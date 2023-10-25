@@ -4,11 +4,10 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Response;
 
-@Path("teste")
-public class test {
+@Path("endereco")
+public class EnderecoRoute {
     @GET
-	public Response teste() {
-		return Response.ok("Teste bem sucedido").build();
-	}
-	
+    public Response teste() {
+        return Response.ok("Teste bem sucedido").build();
+    }
 }
