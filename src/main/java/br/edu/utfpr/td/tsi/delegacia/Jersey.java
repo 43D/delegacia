@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import jakarta.ws.rs.ApplicationPath;
 
 @Component
-@ApplicationPath("/1.0/delegacia")
+@ApplicationPath("/delegacia")
 public class Jersey extends ResourceConfig{
     public Jersey(){
         this.register(RequestContextFilter.class);
