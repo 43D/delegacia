@@ -15,9 +15,6 @@ public class DelegaciaEndpoint {
         String json = Json.createObjectBuilder()
                 .add("pages", Json.createArrayBuilder()
                         .add("boletim")
-                        .add("endereco")
-                        .add("parte")
-                        .add("placa")
                         .add("veiculo"))
                 .build().
                 toString();

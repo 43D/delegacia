@@ -1,60 +1,118 @@
 package br.edu.utfpr.td.tsi.delegacia.boletim.entity;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.List;
 
-public class Veiculo {
-    private Emplacamento emplacamento;
+import br.edu.utfpr.td.tsi.delegacia.boletim.enuns.VeiculosEnum;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Veiculo")
+public class Veiculo implements Serializable{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column( name = "id")
+    private long id;
+    @OneToOne
+    private Placa emplacamento;
+    @Column( name = "anoFabricacao")
     private short anoFabricacao;
+    @Column( name = "cor")
     private String cor;
+    @Column( name = "marca")
     private String marca;
-    private String tipoVeiculo;
-    private ArrayList<BoletimFurtoVeiculo> envolvidoEm; 
+    @Column( name = "tipoVeiculo")
+    private VeiculosEnum tipoVeiculo;
+    @OneToMany
+    @Column(name = "envolvidoEm")
+    private List<BoletimFurtoVeiculo> envolvidoEm;
 
-    public Veiculo(short anoFabricacao, String cor, String marca, String tipoVeiculo, Emplacamento emplacamento, BoletimFurtoVeiculo envolvido) {
+    
+
+    public Veiculo(long id, Placa emplacamento, short anoFabricacao, String cor, String marca, VeiculosEnum tipoVeiculo,
+            List<BoletimFurtoVeiculo> envolvidoEm) {
+        this.id = id;
+        this.emplacamento = emplacamento;
         this.anoFabricacao = anoFabricacao;
         this.cor = cor;
         this.marca = marca;
         this.tipoVeiculo = tipoVeiculo;
-        this.emplacamento = emplacamento;
-        this.envolvidoEm.add(envolvido);
+        this.envolvidoEm = envolvidoEm;
     }
+
     public short getAnoFabricacao() {
         return anoFabricacao;
     }
+
     public void setAnoFabricacao(short anoFabricacao) {
         this.anoFabricacao = anoFabricacao;
     }
+
     public String getCor() {
         return cor;
     }
+
     public void setCor(String cor) {
         this.cor = cor;
     }
+
     public String getMarca() {
         return marca;
     }
+
     public void setMarca(String marca) {
         this.marca = marca;
     }
-    public String getTipoVeiculo() {
+
+    public VeiculosEnum getTipoVeiculo() {
         return tipoVeiculo;
     }
-    public void setTipoVeiculo(String tipoVeiculo) {
+
+    public void setTipoVeiculo(VeiculosEnum tipoVeiculo) {
         this.tipoVeiculo = tipoVeiculo;
     }
-    public Emplacamento getEmplacamento() {
+
+    public Placa getEmplacamento() {
         return emplacamento;
     }
-    public void setEmplacamento(Emplacamento emplacamento) {
+
+    public void setEmplacamento(Placa emplacamento) {
         this.emplacamento = emplacamento;
     }
-    public ArrayList<BoletimFurtoVeiculo> getEnvolvidoEm() {
+
+    public List<BoletimFurtoVeiculo> getEnvolvidoEm() {
         return envolvidoEm;
     }
-    public void setEnvolvidoEm(ArrayList<BoletimFurtoVeiculo> envolvidoEm) {
+
+    public void setEnvolvidoEm(List<BoletimFurtoVeiculo> envolvidoEm) {
         this.envolvidoEm = envolvidoEm;
     }
+
     public void addEnvolvidoEm(BoletimFurtoVeiculo envolvido) {
         this.envolvidoEm.add(envolvido);
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "{id: " + id + ", emplacamento: " + emplacamento + ", anoFabricacao: " + anoFabricacao + ", cor: "
+                + cor + ", marca: " + marca + ", tipoVeiculo: " + tipoVeiculo + ", envolvidoEm: " + envolvidoEm + "}";
+    }
+
+    
 }

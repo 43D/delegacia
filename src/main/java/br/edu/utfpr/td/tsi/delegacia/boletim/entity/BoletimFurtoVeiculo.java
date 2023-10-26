@@ -1,15 +1,39 @@
 package br.edu.utfpr.td.tsi.delegacia.boletim.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class BoletimFurtoVeiculo {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+
+@Entity
+@Table(name = "BoletimFurtoVeiculo")
+public class BoletimFurtoVeiculo implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column( name = "id")
     private long id;
+    @Column( name = "crime")
     private String crime;
+    @Column( name = "dataOcorrencia")
     private Date dataOcorrencia;
+    @Column( name = "periodoOcorrencia")
     private Date periodoOcorrencia;
+    @OneToMany
+    @Column(name = "partes")
     private ArrayList<Parte> partes;
+    @OneToOne
     private Endereco localOcorrencia;
+    @ManyToOne
     private Veiculo veiculoFurtado;
 
     public BoletimFurtoVeiculo(long id, String crime, Date dataOcorrencia,

@@ -1,20 +1,41 @@
 package br.edu.utfpr.td.tsi.delegacia.boletim.entity;
 
-public class Endereco {
-    private String logradouro; 
-    private int numero;
-    private String bairro;
-    private String cidade;
-    private String estado;
+import java.io.Serializable;
 
-    public Endereco(String logradouro, int numero, String bairro, String cidade, String estado) {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Endereco")
+public class Endereco implements Serializable{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column( name = "id")
+    private long id;
+    @Column( name = "logradouro")
+    private String logradouro; 
+    @Column( name = "numero")
+    private int numero;
+    @Column( name = "bairro")
+    private String bairro;
+    @Column( name = "cidade")
+    private String cidade;
+    @Column( name = "estado")
+    private String estado;
+    
+    public Endereco(long id, String logradouro, int numero, String bairro, String cidade, String estado) {
+        this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
     }
-    
     public String getLogradouro() {
         return logradouro;
     }
@@ -44,6 +65,12 @@ public class Endereco {
     }
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
     }
 
     
