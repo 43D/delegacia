@@ -10,11 +10,11 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("parte")
-public class ParteRoute {
+@Path("endereco")
+public class EnderecoEndpoint {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createParte() {
+    public Response createEndereco() {
         return Response.ok("Teste bem sucedido: create ").build();
     }
 
@@ -23,21 +23,21 @@ public class ParteRoute {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response getParteByID() {
+    public Response getEnderecoByID() {
         return Response.ok("Teste bem sucedido: get: " + id).build();
     }
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response updateParteByID() {
+    public Response updateEnderecoByID() {
         return Response.ok("Teste bem sucedido: update: " + id).build();
     }
 
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response deleteParteByID() {
+    public Response deleteEnderecoByID() {
         return Response.ok("Teste bem sucedido: delete: " + id).build();
     }
 }

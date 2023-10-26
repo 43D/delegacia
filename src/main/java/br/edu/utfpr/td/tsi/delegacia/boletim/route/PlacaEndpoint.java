@@ -12,7 +12,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 @Path("placa")
-public class PlacaRoute {
+public class PlacaEndpoint {
     @QueryParam("page")
     private String page;
 

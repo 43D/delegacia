@@ -8,7 +8,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 @Path("")
-public class DelegaciaRoute {
+public class DelegaciaEndpoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response api() {

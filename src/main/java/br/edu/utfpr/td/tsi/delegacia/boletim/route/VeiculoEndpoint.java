@@ -12,7 +12,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 @Path("veiculo")
-public class VeiculoRoute {
+public class VeiculoEndpoint {
     @QueryParam("page")
     private String page;
 
