@@ -4,9 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import br.edu.utfpr.td.tsi.delegacia.boletim.entity.Veiculo;
 import br.edu.utfpr.td.tsi.delegacia.boletim.repository.VeiculoRepository;
+import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
@@ -21,26 +25,34 @@ public class VeiculoEndpoint {
     VeiculoRepository repository;
 
     @QueryParam("page")
-    private String page;
+    @DefaultValue("1")
+    private int page;
+    Pageable pageable = PageRequest.of(page, 50);
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getVeiculos() {
-        List<Veiculo> veiculos = repository.findAll();
-        return Response.ok(veiculos).build();
+        Page<Veiculo> veiculos = repository.findAll(pageable);
+        List<Veiculo> veiculosList = veiculos.getContent();
+        if (veiculosList.size() == 0 && page > 1)
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("Paginação invalida")
+                    .build();
+        return Response.ok(veiculosList).build();
     }
 
     @PathParam("id")
-    private String id;
+    private Long id;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     public Response getVeiculoByID() {
-        Long idLong = Long.parseLong(id);
-        Optional<Veiculo> veiculo = repository.findById(idLong);
+        Optional<Veiculo> veiculo = repository.findById(id);
         if (!veiculo.isPresent()) {
-            return Response.status(Response.Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("Veiculo não encontrado")
+                    .build();
         }
         return Response.ok(veiculo.get()).build();
     }

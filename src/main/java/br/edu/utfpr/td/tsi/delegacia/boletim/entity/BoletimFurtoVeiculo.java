@@ -1,11 +1,13 @@
 package br.edu.utfpr.td.tsi.delegacia.boletim.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,31 +16,30 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
-
 @Entity
 @Table(name = "BoletimFurtoVeiculo")
 public class BoletimFurtoVeiculo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column( name = "id")
+    @Column(name = "id")
     private long id;
-    @Column( name = "crime")
+    @Column(name = "crime")
     private String crime;
-    @Column( name = "dataOcorrencia")
+    @Column(name = "dataOcorrencia")
     private Date dataOcorrencia;
-    @Column( name = "periodoOcorrencia")
+    @Column(name = "periodoOcorrencia")
     private Date periodoOcorrencia;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Column(name = "partes")
-    private ArrayList<Parte> partes;
-    @OneToOne
+    private List<Parte> partes;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Endereco localOcorrencia;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Veiculo veiculoFurtado;
 
     public BoletimFurtoVeiculo(long id, String crime, Date dataOcorrencia,
             Date periodoOcorrencia,
-            ArrayList<Parte> partes,
+            List<Parte> partes,
             Endereco localOcorrencia,
             Veiculo veiculoFurtado) {
         this.id = id;
@@ -48,6 +49,9 @@ public class BoletimFurtoVeiculo implements Serializable {
         this.partes = partes;
         this.localOcorrencia = localOcorrencia;
         this.veiculoFurtado = veiculoFurtado;
+    }
+
+    public BoletimFurtoVeiculo() {
     }
 
     public long getId() {
@@ -74,11 +78,11 @@ public class BoletimFurtoVeiculo implements Serializable {
         this.periodoOcorrencia = periodoOcorrencia;
     }
 
-    public ArrayList<Parte> getPartes() {
+    public List<Parte> getPartes() {
         return partes;
     }
 
-    public void setPartes(ArrayList<Parte> partes) {
+    public void setPartes(List<Parte> partes) {
         this.partes = partes;
     }
 

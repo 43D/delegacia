@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 import br.edu.utfpr.td.tsi.delegacia.boletim.enuns.VeiculosEnum;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,27 +17,26 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Veiculo")
-public class Veiculo implements Serializable{
+public class Veiculo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column( name = "id")
+    @Column(name = "id")
     private long id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Placa emplacamento;
-    @Column( name = "anoFabricacao")
+
+    @Column(name = "anoFabricacao")
     private short anoFabricacao;
-    @Column( name = "cor")
+    @Column(name = "cor")
     private String cor;
-    @Column( name = "marca")
+    @Column(name = "marca")
     private String marca;
-    @Column( name = "tipoVeiculo")
+    @Column(name = "tipoVeiculo")
     private VeiculosEnum tipoVeiculo;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Column(name = "envolvidoEm")
     private List<BoletimFurtoVeiculo> envolvidoEm;
-
-    
 
     public Veiculo(long id, Placa emplacamento, short anoFabricacao, String cor, String marca, VeiculosEnum tipoVeiculo,
             List<BoletimFurtoVeiculo> envolvidoEm) {
@@ -46,6 +47,9 @@ public class Veiculo implements Serializable{
         this.marca = marca;
         this.tipoVeiculo = tipoVeiculo;
         this.envolvidoEm = envolvidoEm;
+    }
+
+    public Veiculo() {
     }
 
     public short getAnoFabricacao() {
@@ -114,5 +118,4 @@ public class Veiculo implements Serializable{
                 + cor + ", marca: " + marca + ", tipoVeiculo: " + tipoVeiculo + ", envolvidoEm: " + envolvidoEm + "}";
     }
 
-    
 }

@@ -2,6 +2,8 @@ package br.edu.utfpr.td.tsi.delegacia.boletim.entity;
 
 import java.io.Serializable;
 
+import br.edu.utfpr.td.tsi.delegacia.boletim.enuns.UnidadeFederacao;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.Cidade;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -17,15 +19,15 @@ public class Placa implements Serializable{
     private String placa;
 
     @Column(name = "estado")
-    private String estado;
+    private UnidadeFederacao estado;
 
     @Column(name = "cidade")
     private String cidade;
 
-    public Placa(String placa, String estado, String cidade) {
+    public Placa(String placa, UnidadeFederacao estado, Cidade cidade) {
         this.placa = placa;
         this.estado = estado;
-        this.cidade = cidade;
+        this.cidade = cidade.getCidade();
     }
 
     public Placa() {
@@ -37,17 +39,17 @@ public class Placa implements Serializable{
     public void setPlaca(String placa) {
         this.placa = placa;
     }
-    public String getEstado() {
+    public UnidadeFederacao getEstado() {
         return estado;
     }
-    public void setEstado(String estado) {
+    public void setEstado(UnidadeFederacao estado) {
         this.estado = estado;
     }
     public String getCidade() {
         return cidade;
     }
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setCidade(String cidade) throws Exception {
+        this.cidade = new Cidade(cidade).getCidade();
     }
     @Override
     public String toString() {
