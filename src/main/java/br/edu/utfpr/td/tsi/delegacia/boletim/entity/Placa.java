@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import br.edu.utfpr.td.tsi.delegacia.boletim.enuns.UnidadeFederacao;
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.Cidade;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.Estado;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.PlacaVeiculo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -24,9 +26,9 @@ public class Placa implements Serializable{
     @Column(name = "cidade")
     private String cidade;
 
-    public Placa(String placa, UnidadeFederacao estado, Cidade cidade) {
-        this.placa = placa;
-        this.estado = estado;
+    public Placa(PlacaVeiculo placa, Estado estado, Cidade cidade) {
+        this.placa = placa.getPlaca();
+        this.estado = estado.getEstado();
         this.cidade = cidade.getCidade();
     }
 
@@ -36,14 +38,14 @@ public class Placa implements Serializable{
     public String getPlaca() {
         return placa;
     }
-    public void setPlaca(String placa) {
-        this.placa = placa;
+    public void setPlaca(String placa) throws Exception {
+        this.placa = new PlacaVeiculo(placa).getPlaca();
     }
     public UnidadeFederacao getEstado() {
         return estado;
     }
-    public void setEstado(UnidadeFederacao estado) {
-        this.estado = estado;
+    public void setEstado(String estado) throws Exception {
+        this.estado = new Estado(estado).getEstado();
     }
     public String getCidade() {
         return cidade;

@@ -1,16 +1,13 @@
 package br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa;
 
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.StringValidator;
+
 public class Cidade {
 
     private String cidade;
 
     public Cidade(String cidade) throws Exception {
-
-        String str = cidade.replaceAll("[^a-zA-Z0-9]", "");
-        str = str.trim();
-        str = str.toUpperCase();
-        if (str.isEmpty() || str == null)
-            throw new IllegalStateException("Cidade Invalido!!!");
+        String str = StringValidator.validateString(cidade, "cidade");
         this.cidade = str;
     }
 
