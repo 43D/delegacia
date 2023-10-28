@@ -3,6 +3,10 @@ package br.edu.utfpr.td.tsi.delegacia.boletim.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.AnoValidator;
+import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.CorValidator;
+import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.MarcaValidator;
+import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.TipoVeiculoValidator;
 import br.edu.utfpr.td.tsi.delegacia.boletim.enuns.VeiculosEnum;
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.AnoFabricado;
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.Cor;
@@ -10,6 +14,7 @@ import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.Marca;
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.TipoVeiculo;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -29,15 +34,18 @@ public class Veiculo implements Serializable {
     private long id;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Placa emplacamento;
-
     @Column(name = "anoFabricacao")
-    private short anoFabricacao;
+    @Convert(converter = AnoValidator.class)
+    private AnoFabricado anoFabricacao;
     @Column(name = "cor")
-    private String cor;
+    @Convert(converter = CorValidator.class)
+    private Cor cor;
     @Column(name = "marca")
-    private String marca;
+    @Convert(converter = MarcaValidator.class)
+    private Marca marca;
     @Column(name = "tipoVeiculo")
-    private VeiculosEnum tipoVeiculo;
+    @Convert(converter = TipoVeiculoValidator.class)
+    private TipoVeiculo tipoVeiculo;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Column(name = "envolvidoEm")
     private List<BoletimFurtoVeiculo> envolvidoEm;
@@ -48,11 +56,10 @@ public class Veiculo implements Serializable {
         if (emplacamento == null)
             throw new IllegalStateException("Emplacamento Invalido!!!");
         this.emplacamento = emplacamento;
-
-        this.anoFabricacao = ano.getAno();
-        this.cor = cor.getCor();
-        this.marca = marca.getMarca();
-        this.tipoVeiculo = tipoVeiculo.getVeiculo();
+        this.anoFabricacao = ano;
+        this.cor = cor;
+        this.marca = marca;
+        this.tipoVeiculo = tipoVeiculo;
         this.envolvidoEm = envolvidoEm;
     }
 
@@ -60,35 +67,43 @@ public class Veiculo implements Serializable {
     }
 
     public short getAnoFabricacao() {
-        return anoFabricacao;
+        return anoFabricacao.getAno();
     }
 
-    public void setAnoFabricacao(short anoFabricacao) throws Exception {
-        this.anoFabricacao = new AnoFabricado(anoFabricacao).getAno();
+    public void setAnoFabricacao(AnoFabricado anoFabricacao) {
+        if (anoFabricacao == null)
+            throw new IllegalStateException("AnoFabricado Invalido!!!");
+        this.anoFabricacao = anoFabricacao;
     }
 
     public String getCor() {
-        return cor;
+        return cor.getCor();
     }
 
-    public void setCor(String cor) throws Exception {
-        this.cor = new Cor(cor).getCor();
+    public void setCor(Cor cor) {
+        if (cor == null)
+            throw new IllegalStateException("Cor Invalido!!!");
+        this.cor = cor;
     }
 
     public String getMarca() {
-        return marca;
+        return marca.getMarca();
     }
 
-    public void setMarca(String marca) throws Exception {
-        this.marca = new Marca(marca).getMarca();
+    public void setMarca(Marca marca) {
+        if (marca == null)
+            throw new IllegalStateException("Marca Invalido!!!");
+        this.marca = marca;
     }
 
     public VeiculosEnum getTipoVeiculo() {
-        return tipoVeiculo;
+        return tipoVeiculo.getVeiculo();
     }
 
-    public void setTipoVeiculo(String tipoVeiculo) throws Exception {
-        this.tipoVeiculo = new TipoVeiculo(tipoVeiculo).getVeiculo();
+    public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
+        if (tipoVeiculo == null)
+            throw new IllegalStateException("TipoVeiculo Invalido!!!");
+        this.tipoVeiculo = tipoVeiculo;
     }
 
     public Placa getEmplacamento() {

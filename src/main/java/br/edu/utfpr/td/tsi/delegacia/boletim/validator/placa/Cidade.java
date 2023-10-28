@@ -7,7 +7,7 @@ public class Cidade {
     private String cidade;
 
     public Cidade(String cidade) throws Exception {
-        String str = StringValidator.validateString(cidade, "cidade");
+        String str = StringValidator.validateStringWithSpace(cidade, "cidade");
         this.cidade = str;
     }
 

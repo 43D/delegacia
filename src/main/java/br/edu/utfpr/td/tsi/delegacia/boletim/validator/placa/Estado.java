@@ -7,7 +7,7 @@ public class Estado {
     private UnidadeFederacao estado;
 
     public Estado(String estado) throws Exception {
-        String str = StringValidator.validateString(estado, "Estado");
+        String str = StringValidator.validateStringWithUnderline(estado, "Estado");
 
         UnidadeFederacao uf = null;
         if (str.length() == 2) {

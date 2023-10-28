@@ -6,7 +6,7 @@ public class Cor {
     private String cor;
 
     public Cor(String cor) throws Exception {
-        String str = StringValidator.validateString(cor, "cor");
+        String str = StringValidator.validateStringWithSpace(cor, "cor");
         this.cor = str;
     }
 

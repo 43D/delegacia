@@ -7,7 +7,7 @@ public class TipoVeiculo {
     private VeiculosEnum veiculo;
 
     public TipoVeiculo(String veiculo) throws Exception {
-        String str = StringValidator.validateString(veiculo, "veiculo");
+        String str = StringValidator.validateStringWithUnderline(veiculo, "veiculo");
         VeiculosEnum veicEnum = VeiculosEnum.valueOf(str);
         this.veiculo = veicEnum;
     }

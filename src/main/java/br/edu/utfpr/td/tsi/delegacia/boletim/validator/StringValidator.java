@@ -3,16 +3,46 @@ package br.edu.utfpr.td.tsi.delegacia.boletim.validator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
 public class StringValidator {
-    public static String validateString(String str, String name) {
+    public static String validateStringWithoutSpace(String str, String name) {
         if (str == null)
-            throw new IllegalStateException(name + " Invalido!!!");
+             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, name + " Invalida!!!");
 
         str = str.replaceAll("[^a-zA-Z0-9]", "");
         str = str.trim();
         str = str.toUpperCase();
         if (str.isEmpty())
-            throw new IllegalStateException(name + " Invalido!!!");
+             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, name + " Invalida!!!");
+
+        return str;
+    }
+
+    public static String validateStringWithSpace(String str, String name) {
+        if (str == null)
+             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, name + " Invalida!!!");
+
+        str = str.replaceAll("[^a-zA-Z0-9 ]", "");
+        str = str.trim();
+        str = str.toUpperCase();
+        if (str.isEmpty())
+             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, name + " Invalida!!!");
+
+        return str;
+    }
+
+    public static String validateStringWithUnderline(String str, String name) {
+        if (str == null)
+             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, name + " Invalida!!!");
+
+        str = str.replaceAll(" ", "_");
+        str = str.replaceAll("[^a-zA-Z0-9_]", "");
+        str = str.trim();
+        str = str.toUpperCase();
+        if (str.isEmpty())
+             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, name + " Invalida!!!");
 
         return str;
     }
@@ -21,6 +51,18 @@ public class StringValidator {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(str);
         return matcher.matches();
+    }
+
+    public static String validateString(String str, String name) {
+        if (str == null)
+             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, name + " Invalida!!!");
+
+        str = str.trim();
+        str = str.toUpperCase();
+        if (str.isEmpty())
+             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, name + " Invalida!!!");
+
+        return str;
     }
 
 }

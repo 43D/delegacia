@@ -5,8 +5,9 @@ import br.edu.utfpr.td.tsi.delegacia.boletim.validator.StringValidator;
 public class PlacaVeiculo {
     private String placa;
 
-    public PlacaVeiculo(String placa) throws Exception {
-        String str = StringValidator.validateString(placa, "placa");
+    public PlacaVeiculo(String placa) {
+
+        String str = StringValidator.validateStringWithoutSpace(placa, "placa");
 
         String regex = "[A-Z]{3}[0-9]{1}[A-Z]{1}[0-9]{2}|[A-Z]{3}[0-9]{4}";
 
