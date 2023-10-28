@@ -56,60 +56,47 @@ public class Veiculo implements Serializable {
     @PrimaryKeyJoinColumn
     private BoletimFurtoVeiculo envolvidoEm;
 
-    public Veiculo(long id, Placa emplacamento, AnoFabricado ano, Cor cor, Marca marca, TipoVeiculo tipoVeiculo,
-            BoletimFurtoVeiculo envolvidoEm) {
-        this.id = id;
-        if (emplacamento == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Emplacamento Invalido!!!");
-        this.emplacamento = emplacamento;
-        this.anoFabricacao = ano;
-        this.cor = cor;
-        this.marca = marca;
-        this.tipoVeiculo = tipoVeiculo;
-        this.envolvidoEm = envolvidoEm;
-    }
-
     public Veiculo() {
 
     }
 
     public Integer getAnoFabricacao() {
-        return anoFabricacao.getAno();
+        return (anoFabricacao != null) ? anoFabricacao.getAno() : null;
     }
 
     public void setAnoFabricacao(AnoFabricado anoFabricacao) {
         if (anoFabricacao == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"AnoFabricado Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "AnoFabricado Invalido!!!");
         this.anoFabricacao = anoFabricacao;
     }
 
     public String getCor() {
-        return cor.getCor();
+        return (cor != null) ? cor.getCor() : null;
     }
 
     public void setCor(Cor cor) {
         if (cor == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Cor Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cor Invalido!!!");
         this.cor = cor;
     }
 
     public String getMarca() {
-        return marca.getMarca();
+        return (marca != null) ? marca.getMarca() : null;
     }
 
     public void setMarca(Marca marca) {
         if (marca == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Marca Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Marca Invalido!!!");
         this.marca = marca;
     }
 
     public VeiculosEnum getTipoVeiculo() {
-        return tipoVeiculo.getVeiculo();
+        return (tipoVeiculo != null) ? tipoVeiculo.getVeiculo() : null;
     }
 
     public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
         if (tipoVeiculo == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"TipoVeiculo Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "TipoVeiculo Invalido!!!");
         this.tipoVeiculo = tipoVeiculo;
     }
 
@@ -119,7 +106,7 @@ public class Veiculo implements Serializable {
 
     public void setEmplacamento(Placa emplacamento) {
         if (emplacamento == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Emplacamento Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Emplacamento Invalido!!!");
         this.emplacamento = emplacamento;
     }
 

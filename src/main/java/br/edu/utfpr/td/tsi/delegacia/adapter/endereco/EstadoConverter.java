@@ -1,4 +1,4 @@
-package br.edu.utfpr.td.tsi.delegacia.adapter.placa;
+package br.edu.utfpr.td.tsi.delegacia.adapter.endereco;
 
 import br.edu.utfpr.td.tsi.delegacia.values.endereco.Estado;
 import jakarta.persistence.AttributeConverter;
@@ -12,7 +12,7 @@ public class EstadoConverter implements AttributeConverter<Estado, String> {
         if (uf == null)
             return null;
 
-        return uf.toString();
+        return uf.getEstado().toString();
     }
 
     @Override

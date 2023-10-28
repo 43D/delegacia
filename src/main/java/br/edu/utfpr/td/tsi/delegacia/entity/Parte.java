@@ -55,42 +55,42 @@ public class Parte implements Serializable {
     }
 
     public String getNome() {
-        return nome.getNome();
+        return (nome != null) ? nome.getNome() : null;
     }
 
     public void setNome(NomeParte nome) {
         if (nome == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Nome Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nome Invalido!!!");
         this.nome = nome;
     }
 
     public String getEmail() {
-        return email.toString();
+        return (email != null) ? email.toString() : null;
     }
 
     public void setEmail(EmailParte email) {
         if (email == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Email Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email Invalido!!!");
         this.email = email;
     }
 
     public String getTelefone() {
-        return telefone.getTelefone();
+        return (telefone != null) ? telefone.getTelefone() : null;
     }
 
     public void setTelefone(TelefoneParte telefone) {
         if (telefone == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Telefone Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Telefone Invalido!!!");
         this.telefone = telefone;
     }
 
     public String getTipoEnvolvimento() {
-        return tipoEnvolvimento.getEnvolvimento();
+        return (tipoEnvolvimento != null) ? tipoEnvolvimento.getEnvolvimento() : null;
     }
 
     public void setTipoEnvolvimento(EnvolvimentoParte tipoEnvolvimento) {
         if (tipoEnvolvimento == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "tipoEnvolvimento Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "tipoEnvolvimento Invalido!!!");
         this.tipoEnvolvimento = tipoEnvolvimento;
     }
 

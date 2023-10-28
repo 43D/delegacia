@@ -70,9 +70,10 @@ public class BoletimEndpoint {
     public Response createBoletim(BoletimFurtoVeiculo bo) {
         if (!BoletimFurtoVeiculoSpecification.checkBoletimFurtoVeiculoSpecification(bo))
             return Response.status(Response.Status.BAD_REQUEST).entity("Valores ausentes").build();
+
         repository.save(bo);
         bo.getVeiculoFurtado().setEnvolvidoEm(bo);
-        
+
         return Response.status(Response.Status.CREATED).entity(bo).build();
     }
 

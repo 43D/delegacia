@@ -12,7 +12,7 @@ public class PeriodoConverter implements AttributeConverter<PeriodoOcorrencia, S
         if (periodo == null)
             return null;
             
-        return periodo.toString();
+        return periodo.getPeriodo().toString();
     }
 
     @Override

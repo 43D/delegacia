@@ -1,6 +1,7 @@
 package br.edu.utfpr.td.tsi.delegacia.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -32,7 +33,7 @@ import jakarta.persistence.Table;
 public class BoletimFurtoVeiculo implements Serializable {
 
     @Id
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")    
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, unique = true, nullable = false)
     private long id;
@@ -83,23 +84,28 @@ public class BoletimFurtoVeiculo implements Serializable {
         this.crime = "Furto (art. 155) - VEICULO";
     }
 
-    public DataOcorrencia getDataOcorrencia() {
-        return dataOcorrencia;
+    public String getDataOcorrencia() {
+        if (this.dataOcorrencia != null) {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            String strDate = formatter.format(this.dataOcorrencia.getData());
+            return strDate;
+        }
+        return null;
     }
 
     public void setDataOcorrencia(DataOcorrencia dataOcorrencia) {
         if (dataOcorrencia == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "dataOcorrencia Invalida!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "dataOcorrencia Invalida!!!");
         this.dataOcorrencia = dataOcorrencia;
     }
 
-    public PeriodoOcorrencia getPeriodoOcorrencia() {
-        return periodoOcorrencia;
+    public String getPeriodoOcorrencia() {
+        return (this.periodoOcorrencia != null) ? periodoOcorrencia.getPeriodo().toString() : null;
     }
 
     public void setPeriodoOcorrencia(PeriodoOcorrencia periodoOcorrencia) {
         if (periodoOcorrencia == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "periodoOcorrencia Invalida!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "periodoOcorrencia Invalida!!!");
         this.periodoOcorrencia = periodoOcorrencia;
     }
 
@@ -117,7 +123,7 @@ public class BoletimFurtoVeiculo implements Serializable {
 
     public void setPartes(List<Parte> partes) {
         if (partes == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Partes Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Partes Invalido!!!");
         this.partes = partes;
     }
 
@@ -131,7 +137,7 @@ public class BoletimFurtoVeiculo implements Serializable {
 
     public void setLocalOcorrencia(Endereco localOcorrencia) {
         if (localOcorrencia == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "localOcorrencia Invalida!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "localOcorrencia Invalida!!!");
         this.localOcorrencia = localOcorrencia;
     }
 
@@ -141,7 +147,7 @@ public class BoletimFurtoVeiculo implements Serializable {
 
     public void setVeiculoFurtado(Veiculo veiculoFurtado) {
         if (veiculoFurtado == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "veiculoFurtado Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "veiculoFurtado Invalido!!!");
         this.veiculoFurtado = veiculoFurtado;
     }
 

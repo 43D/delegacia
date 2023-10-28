@@ -12,7 +12,7 @@ public class TipoVeiculoConverter implements AttributeConverter<TipoVeiculo, Str
         if (tipoVeiculo == null)
             return null;
 
-        return tipoVeiculo.toString();
+        return tipoVeiculo.getVeiculo().toString();
     }
 
     @Override

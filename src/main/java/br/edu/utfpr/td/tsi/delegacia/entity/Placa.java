@@ -7,8 +7,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.edu.utfpr.td.tsi.delegacia.adapter.placa.CidadeConverter;
-import br.edu.utfpr.td.tsi.delegacia.adapter.placa.EstadoConverter;
+import br.edu.utfpr.td.tsi.delegacia.adapter.endereco.CidadeConverter;
+import br.edu.utfpr.td.tsi.delegacia.adapter.endereco.EstadoConverter;
 import br.edu.utfpr.td.tsi.delegacia.adapter.placa.PlacaConverter;
 import br.edu.utfpr.td.tsi.delegacia.enuns.UnidadeFederacao;
 import br.edu.utfpr.td.tsi.delegacia.values.endereco.Cidade;
@@ -54,7 +54,7 @@ public class Placa implements Serializable {
     }
 
     public String getPlaca() {
-        return placa.getPlaca();
+        return (placa != null) ? placa.getPlaca() : null;
     }
 
     public void setPlaca(PlacaVeiculo placa) {
@@ -62,22 +62,22 @@ public class Placa implements Serializable {
     }
 
     public UnidadeFederacao getEstado() {
-        return estado.getEstado();
+        return (estado != null) ? estado.getEstado() : null;
     }
 
     public void setEstado(Estado uf) {
         if (uf == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Estado Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Estado Invalido!!!");
         this.estado = uf;
     }
 
     public String getCidade() {
-        return cidade.getCidade();
+        return (cidade != null) ? cidade.getCidade() : null;
     }
 
     public void setCidade(Cidade cidade) {
         if (cidade == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Cidade Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cidade Invalido!!!");
         this.cidade = cidade;
     }
 

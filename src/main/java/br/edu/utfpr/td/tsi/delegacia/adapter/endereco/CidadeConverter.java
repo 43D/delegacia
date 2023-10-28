@@ -1,4 +1,4 @@
-package br.edu.utfpr.td.tsi.delegacia.adapter.placa;
+package br.edu.utfpr.td.tsi.delegacia.adapter.endereco;
 
 import br.edu.utfpr.td.tsi.delegacia.values.endereco.Cidade;
 import jakarta.persistence.AttributeConverter;

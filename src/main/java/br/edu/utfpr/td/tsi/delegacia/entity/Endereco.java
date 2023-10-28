@@ -6,10 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import br.edu.utfpr.td.tsi.delegacia.adapter.endereco.BairroConverter;
+import br.edu.utfpr.td.tsi.delegacia.adapter.endereco.CidadeConverter;
+import br.edu.utfpr.td.tsi.delegacia.adapter.endereco.EstadoConverter;
 import br.edu.utfpr.td.tsi.delegacia.adapter.endereco.LogradouroConverter;
 import br.edu.utfpr.td.tsi.delegacia.adapter.endereco.NumeroConverter;
-import br.edu.utfpr.td.tsi.delegacia.adapter.placa.CidadeConverter;
-import br.edu.utfpr.td.tsi.delegacia.adapter.placa.EstadoConverter;
 import br.edu.utfpr.td.tsi.delegacia.enuns.UnidadeFederacao;
 import br.edu.utfpr.td.tsi.delegacia.values.endereco.Bairro;
 import br.edu.utfpr.td.tsi.delegacia.values.endereco.Cidade;
@@ -61,52 +61,52 @@ public class Endereco implements Serializable {
     }
 
     public String getLogradouro() {
-        return logradouro.getLogradouro();
+        return (logradouro != null) ? logradouro.getLogradouro() : null;
     }
 
     public void setLogradouro(Logradouro logradouro) {
         if (logradouro == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Logradouro Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Logradouro Invalido!!!");
         this.logradouro = logradouro;
     }
 
     public String getNumero() {
-        return numero.getNumero();
+        return (numero != null) ? numero.getNumero() : null;
     }
 
     public void setNumero(Numero numero) {
         if (numero == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Numero Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Numero Invalido!!!");
         this.numero = numero;
     }
 
     public String getBairro() {
-        return bairro.getBairro();
+        return (bairro != null) ? bairro.getBairro() : null;
     }
 
     public void setBairro(Bairro bairro) {
         if (bairro == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Bairro Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bairro Invalido!!!");
         this.bairro = bairro;
     }
 
     public String getCidade() {
-        return cidade.getCidade();
+        return (cidade != null) ? cidade.getCidade() : null;
     }
 
     public void setCidade(Cidade cidade) {
         if (cidade == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Cidade Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cidade Invalido!!!");
         this.cidade = cidade;
     }
 
     public UnidadeFederacao getEstado() {
-        return estado.getEstado();
+        return (estado != null) ? estado.getEstado() : null;
     }
 
     public void setEstado(Estado estado) {
         if (estado == null)
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Estado Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Estado Invalido!!!");
         this.estado = estado;
     }
 
