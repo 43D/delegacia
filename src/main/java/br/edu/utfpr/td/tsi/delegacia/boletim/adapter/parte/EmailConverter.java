@@ -11,13 +11,13 @@ public class EmailConverter implements AttributeConverter<EmailParte, String> {
     public String convertToDatabaseColumn(EmailParte email) {
         if (email == null)
             return null;
-        return email.toString();
+        return email.getEmail();
     }
 
     @Override
-    public EmailParte convertToEntityAttribute(String emailString) {
+    public EmailParte convertToEntityAttribute(String str) {
         try {
-            return new EmailParte(emailString);
+            return new EmailParte(str);
         } catch (Exception e) {
            return null;
         }

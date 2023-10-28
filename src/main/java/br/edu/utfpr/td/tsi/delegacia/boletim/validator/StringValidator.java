@@ -11,7 +11,7 @@ public class StringValidator {
         if (str == null)
              throw new ResponseStatusException(HttpStatus.BAD_REQUEST, name + " Invalida!!!");
 
-        str = str.replaceAll("[^a-zA-Z0-9]", "");
+        str = str.replaceAll("[^a-zA-Z0-9áàâãéèêíïóôõöúçñ]", "");
         str = str.trim();
         str = str.toUpperCase();
         if (str.isEmpty())
@@ -24,7 +24,7 @@ public class StringValidator {
         if (str == null)
              throw new ResponseStatusException(HttpStatus.BAD_REQUEST, name + " Invalida!!!");
 
-        str = str.replaceAll("[^a-zA-Z0-9 ]", "");
+        str = str.replaceAll("[^a-zA-Z0-9áàâãéèêíïóôõöúçñ ]", "");
         str = str.trim();
         str = str.toUpperCase();
         if (str.isEmpty())

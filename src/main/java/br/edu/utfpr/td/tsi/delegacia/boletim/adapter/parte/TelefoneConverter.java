@@ -11,7 +11,7 @@ public class TelefoneConverter implements AttributeConverter<TelefoneParte, Stri
     public String convertToDatabaseColumn(TelefoneParte telefone) {
         if (telefone == null)
             return null;
-        return telefone.toString();
+        return telefone.getTelefone();
     }
 
     @Override

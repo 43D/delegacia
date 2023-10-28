@@ -11,7 +11,7 @@ public class NomeConverter implements AttributeConverter<NomeParte, String> {
     public String convertToDatabaseColumn(NomeParte nome) {
         if (nome == null)
             return null;
-        return nome.toString();
+        return nome.getNome();
     }
 
     @Override

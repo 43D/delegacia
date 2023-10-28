@@ -2,12 +2,18 @@ package br.edu.utfpr.td.tsi.delegacia.boletim.entity;
 
 import java.io.Serializable;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.endereco.BairroConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.endereco.LogradouroConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.endereco.NumeroConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.placa.CidadeConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.placa.EstadoConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.enuns.UnidadeFederacao;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.endereco.Bairro;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.endereco.Logradouro;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.endereco.Numero;
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.Cidade;
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.Estado;
 import jakarta.persistence.Column;
@@ -28,13 +34,13 @@ public class Endereco implements Serializable {
     private long id;
     @Column(name = "logradouro")
     @Convert(converter = LogradouroConverter.class)
-    private String logradouro;
+    private Logradouro logradouro;
     @Column(name = "numero")
     @Convert(converter = NumeroConverter.class)
-    private int numero;
+    private Numero numero;
     @Column(name = "bairro")
     @Convert(converter = BairroConverter.class)
-    private String bairro;
+    private Bairro bairro;
     @Column(name = "cidade")
     @Convert(converter = CidadeConverter.class)
     private Cidade cidade;
@@ -42,11 +48,11 @@ public class Endereco implements Serializable {
     @Convert(converter = EstadoConverter.class)
     private Estado estado;
 
-    public Endereco(long id, String logradouro, int numero, String bairro, Cidade cidade, Estado estado) {
+    public Endereco(long id, Logradouro logradouro, Numero numero, Bairro bairro, Cidade cidade, Estado estado) {
         this.id = id;
-        this.logradouro = logradouro; //
-        this.numero = numero; //
-        this.bairro = bairro; // 
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
     }
@@ -55,26 +61,32 @@ public class Endereco implements Serializable {
     }
 
     public String getLogradouro() {
-        return logradouro;
+        return logradouro.getLogradouro();
     }
 
-    public void setLogradouro(String logradouro) {
+    public void setLogradouro(Logradouro logradouro) {
+        if (logradouro == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Logradouro Invalido!!!");
         this.logradouro = logradouro;
     }
 
-    public int getNumero() {
-        return numero;
+    public String getNumero() {
+        return numero.getNumero();
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(Numero numero) {
+        if (numero == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Numero Invalido!!!");
         this.numero = numero;
     }
 
     public String getBairro() {
-        return bairro;
+        return bairro.getBairro();
     }
 
-    public void setBairro(String bairro) {
+    public void setBairro(Bairro bairro) {
+        if (bairro == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bairro Invalido!!!");
         this.bairro = bairro;
     }
 
@@ -83,6 +95,8 @@ public class Endereco implements Serializable {
     }
 
     public void setCidade(Cidade cidade) {
+        if (cidade == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cidade Invalido!!!");
         this.cidade = cidade;
     }
 
@@ -91,6 +105,8 @@ public class Endereco implements Serializable {
     }
 
     public void setEstado(Estado estado) {
+        if (estado == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Estado Invalido!!!");
         this.estado = estado;
     }
 
@@ -100,6 +116,12 @@ public class Endereco implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "{id: " + id + ", logradouro: " + logradouro + ", numero: " + numero + ", bairro: " + bairro
+                + ", cidade: " + cidade + ", estado: " + estado + "}";
     }
 
 }

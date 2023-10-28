@@ -12,7 +12,7 @@ public class CidadeConverter implements AttributeConverter<Cidade, String> {
         if (cidade == null)
             return null;
 
-        return cidade.toString();
+        return cidade.getCidade();
     }
 
     @Override

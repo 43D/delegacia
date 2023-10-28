@@ -11,7 +11,7 @@ public class EnvolvimentoConverter implements AttributeConverter<EnvolvimentoPar
     public String convertToDatabaseColumn(EnvolvimentoParte envolvidoEm) {
         if (envolvidoEm == null)
             return null;
-        return envolvidoEm.toString();
+        return envolvidoEm.getEnvolvimento();
     }
 
     @Override
