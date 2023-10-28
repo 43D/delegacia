@@ -3,7 +3,7 @@ package br.edu.utfpr.td.tsi.delegacia.values.parte;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.edu.utfpr.td.tsi.delegacia.values.StringValidator;
+import br.edu.utfpr.td.tsi.delegacia.validator.StringValidator;
 
 public class EmailParte {
     private String email;

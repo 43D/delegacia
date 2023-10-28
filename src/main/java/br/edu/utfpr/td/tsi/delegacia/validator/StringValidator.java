@@ -1,4 +1,4 @@
-package br.edu.utfpr.td.tsi.delegacia.values;
+package br.edu.utfpr.td.tsi.delegacia.validator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,7 +1,7 @@
 package br.edu.utfpr.td.tsi.delegacia.values.endereco;
 
 import br.edu.utfpr.td.tsi.delegacia.enuns.UnidadeFederacao;
-import br.edu.utfpr.td.tsi.delegacia.values.StringValidator;
+import br.edu.utfpr.td.tsi.delegacia.validator.StringValidator;
 
 public class Estado {
     private UnidadeFederacao estado;

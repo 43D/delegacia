@@ -1,7 +1,7 @@
 package br.edu.utfpr.td.tsi.delegacia.values.boletim;
 
 import br.edu.utfpr.td.tsi.delegacia.enuns.PeriodosEnum;
-import br.edu.utfpr.td.tsi.delegacia.values.StringValidator;
+import br.edu.utfpr.td.tsi.delegacia.validator.StringValidator;
 
 public class PeriodoOcorrencia {
     private PeriodosEnum periodo;

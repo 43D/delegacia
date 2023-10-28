@@ -1,6 +1,6 @@
 package br.edu.utfpr.td.tsi.delegacia.values.Veiculo;
 
-import br.edu.utfpr.td.tsi.delegacia.values.StringValidator;
+import br.edu.utfpr.td.tsi.delegacia.validator.StringValidator;
 
 public class Cor {
     private String cor;

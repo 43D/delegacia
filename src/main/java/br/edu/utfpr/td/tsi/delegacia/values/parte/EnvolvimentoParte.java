@@ -1,6 +1,6 @@
 package br.edu.utfpr.td.tsi.delegacia.values.parte;
 
-import br.edu.utfpr.td.tsi.delegacia.values.StringValidator;
+import br.edu.utfpr.td.tsi.delegacia.validator.StringValidator;
 
 public class EnvolvimentoParte {
     private String envolvimento;
