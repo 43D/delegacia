@@ -1,30 +1,21 @@
 package br.edu.utfpr.td.tsi.delegacia.boletim.validator.endereco;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
-
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.StringValidator;
 
 public class Bairro {
-    private String email;
+    private String bairro;
 
-    public Bairro(String email) {
-        String str = StringValidator.validateString(email, "email");
-
-        String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$";
-
-        if (!StringValidator.validateRegex(regex, str))
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email Invalida!!!");
-
-        this.email = str;
+    public Bairro(String bairro) {
+        String str = StringValidator.validateStringWithSpace(bairro, "email");
+        this.bairro = str;
     }
 
-    public String getEmail() {
-        return email;
+    public String getBairro() {
+        return bairro;
     }
 
     @Override
     public String toString() {
-        return email;
+        return bairro;
     }
 }
