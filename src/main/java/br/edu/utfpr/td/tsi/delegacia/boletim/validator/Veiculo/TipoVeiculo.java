@@ -6,7 +6,7 @@ import br.edu.utfpr.td.tsi.delegacia.boletim.validator.StringValidator;
 public class TipoVeiculo {
     private VeiculosEnum veiculo;
 
-    public TipoVeiculo(String veiculo) throws Exception {
+    public TipoVeiculo(String veiculo) {
         String str = StringValidator.validateStringWithUnderline(veiculo, "veiculo");
         VeiculosEnum veicEnum = VeiculosEnum.valueOf(str);
         this.veiculo = veicEnum;

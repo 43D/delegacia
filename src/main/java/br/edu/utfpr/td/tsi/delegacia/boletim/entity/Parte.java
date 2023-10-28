@@ -7,6 +7,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.parte.EmailConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.parte.EmailParte;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.parte.EnvolvimentoParte;
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.parte.NomeParte;
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.parte.TelefoneParte;
 import jakarta.persistence.Column;
@@ -26,20 +27,24 @@ public class Parte implements Serializable {
     @Column(name = "id")
     private long id;
     @Column(name = "nome")
-    private String nome;
+    //
+    private NomeParte nome;
     @Column(name = "email")
     @Convert(converter = EmailConverter.class)
     private EmailParte email;
     @Column(name = "telefone")
-    private String telefone;
+    //
+    private TelefoneParte telefone;
     @Column(name = "tipoEnvolvimento")
-    private String tipoEnvolvimento;
+    //
+    private EnvolvimentoParte tipoEnvolvimento;
 
-    public Parte(long id, NomeParte nome, EmailParte email, TelefoneParte telefone, String tipoEnvolvimento) {
+    public Parte(long id, NomeParte nome, EmailParte email, TelefoneParte telefone,
+            EnvolvimentoParte tipoEnvolvimento) {
         this.id = id;
-        this.nome = nome.getNome();
+        this.nome = nome;
         this.email = email;
-        this.telefone = telefone.getTelefone();
+        this.telefone = telefone;
         this.tipoEnvolvimento = tipoEnvolvimento;
     }
 
@@ -47,11 +52,13 @@ public class Parte implements Serializable {
     }
 
     public String getNome() {
-        return nome;
+        return nome.getNome();
     }
 
-    public void setNome(String nome) throws Exception {
-        this.nome = new NomeParte(nome).getNome();
+    public void setNome(NomeParte nome) {
+        if (nome == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nome Invalido!!!");
+        this.nome = nome;
     }
 
     public String getEmail() {
@@ -65,18 +72,22 @@ public class Parte implements Serializable {
     }
 
     public String getTelefone() {
-        return telefone;
+        return telefone.getTelefone();
     }
 
-    public void setTelefone(String telefone) throws Exception {
-        this.telefone = new TelefoneParte(telefone).getTelefone();
+    public void setTelefone(TelefoneParte telefone) {
+        if (telefone == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Telefone Invalido!!!");
+        this.telefone = telefone;
     }
 
     public String getTipoEnvolvimento() {
-        return tipoEnvolvimento;
+        return tipoEnvolvimento.getEnvolvimento();
     }
 
-    public void setTipoEnvolvimento(String tipoEnvolvimento) {
+    public void setTipoEnvolvimento(EnvolvimentoParte tipoEnvolvimento) {
+        if (tipoEnvolvimento == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "tipoEnvolvimento Invalido!!!");
         this.tipoEnvolvimento = tipoEnvolvimento;
     }
 

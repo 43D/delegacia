@@ -5,7 +5,7 @@ import br.edu.utfpr.td.tsi.delegacia.boletim.validator.StringValidator;
 public class TelefoneParte {
     private String telefone;
 
-    public TelefoneParte(String telefone) throws Exception {
+    public TelefoneParte(String telefone) {
         String str = StringValidator.validateStringWithoutSpace(telefone, "telefone");
 
         String regex = "[0-9]{2}[0-9]{1}[0-9]{8}|[0-9]{2}[0-9]{8}";

@@ -5,7 +5,7 @@ import br.edu.utfpr.td.tsi.delegacia.boletim.validator.StringValidator;
 public class NomeParte {
     private String nome;
 
-    public NomeParte(String nome) throws Exception {
+    public NomeParte(String nome) {
         String str = StringValidator.validateStringWithSpace(nome, "nome");
         this.nome = str;
     }

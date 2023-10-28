@@ -8,7 +8,7 @@ import br.edu.utfpr.td.tsi.delegacia.boletim.validator.StringValidator;
 public class EmailParte {
     private String email;
 
-    public EmailParte(String email) throws Exception {
+    public EmailParte(String email) {
         String str = StringValidator.validateString(email, "email");
 
         String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$";

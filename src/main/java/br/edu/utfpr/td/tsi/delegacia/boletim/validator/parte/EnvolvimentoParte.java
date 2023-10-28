@@ -5,7 +5,7 @@ import br.edu.utfpr.td.tsi.delegacia.boletim.validator.StringValidator;
 public class EnvolvimentoParte {
     private String envolvimento;
 
-    public EnvolvimentoParte(String envolvimento) throws Exception {
+    public EnvolvimentoParte(String envolvimento) {
         String str = StringValidator.validateString(envolvimento, "envolvimento");
         this.envolvimento = str;
     }
