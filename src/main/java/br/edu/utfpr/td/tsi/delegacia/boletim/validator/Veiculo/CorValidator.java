@@ -2,10 +2,10 @@ package br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo;
 
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.StringValidator;
 
-public class Cor {
+public class CorValidator {
     private String cor;
 
-    public Cor(String cor) {
+    public CorValidator(String cor) {
         String str = StringValidator.validateStringWithSpace(cor, "cor");
         this.cor = str;
     }

@@ -2,8 +2,16 @@ package br.edu.utfpr.td.tsi.delegacia.boletim.entity;
 
 import java.io.Serializable;
 
+import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.endereco.BairroConverter;
+import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.endereco.LogradouroConverter;
+import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.endereco.NumeroConverter;
+import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.placa.CidadeConverter;
+import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.placa.EstadoConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.enuns.UnidadeFederacao;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.CidadeValidator;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.EstadoValidator;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,21 +27,26 @@ public class Endereco implements Serializable {
     @Column(name = "id")
     private long id;
     @Column(name = "logradouro")
+    @Convert(converter = LogradouroConverter.class)
     private String logradouro;
     @Column(name = "numero")
+    @Convert(converter = NumeroConverter.class)
     private int numero;
     @Column(name = "bairro")
+    @Convert(converter = BairroConverter.class)
     private String bairro;
     @Column(name = "cidade")
-    private String cidade;
+    @Convert(converter = CidadeConverter.class)
+    private CidadeValidator cidade;
     @Column(name = "estado")
-    private UnidadeFederacao estado;
+    @Convert(converter = EstadoConverter.class)
+    private EstadoValidator estado;
 
-    public Endereco(long id, String logradouro, int numero, String bairro, String cidade, UnidadeFederacao estado) {
+    public Endereco(long id, String logradouro, int numero, String bairro, CidadeValidator cidade, EstadoValidator estado) {
         this.id = id;
-        this.logradouro = logradouro;
-        this.numero = numero;
-        this.bairro = bairro;
+        this.logradouro = logradouro; //
+        this.numero = numero; //
+        this.bairro = bairro; // 
         this.cidade = cidade;
         this.estado = estado;
     }
@@ -66,18 +79,18 @@ public class Endereco implements Serializable {
     }
 
     public String getCidade() {
-        return cidade;
+        return cidade.getCidade();
     }
 
-    public void setCidade(String cidade) {
+    public void setCidade(CidadeValidator cidade) {
         this.cidade = cidade;
     }
 
     public UnidadeFederacao getEstado() {
-        return estado;
+        return estado.getEstado();
     }
 
-    public void setEstado(UnidadeFederacao estado) {
+    public void setEstado(EstadoValidator estado) {
         this.estado = estado;
     }
 

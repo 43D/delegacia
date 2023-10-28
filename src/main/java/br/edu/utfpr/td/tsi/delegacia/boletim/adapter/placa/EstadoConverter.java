@@ -1,14 +1,14 @@
 package br.edu.utfpr.td.tsi.delegacia.boletim.adapter.placa;
 
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.Estado;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.EstadoValidator;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class EstadoConverter implements AttributeConverter<Estado, String> {
+public class EstadoConverter implements AttributeConverter<EstadoValidator, String> {
 
     @Override
-    public String convertToDatabaseColumn(Estado uf) {
+    public String convertToDatabaseColumn(EstadoValidator uf) {
         if (uf == null)
             return null;
 
@@ -16,9 +16,9 @@ public class EstadoConverter implements AttributeConverter<Estado, String> {
     }
 
     @Override
-    public Estado convertToEntityAttribute(String str) {
+    public EstadoValidator convertToEntityAttribute(String str) {
         try {
-            return new Estado(str);
+            return new EstadoValidator(str);
         } catch (Exception e) {
             return null;
         }

@@ -2,10 +2,10 @@ package br.edu.utfpr.td.tsi.delegacia.boletim.validator.parte;
 
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.StringValidator;
 
-public class EnvolvimentoParte {
+public class EnvolvimentoValidator {
     private String envolvimento;
 
-    public EnvolvimentoParte(String envolvimento) {
+    public EnvolvimentoValidator(String envolvimento) {
         String str = StringValidator.validateString(envolvimento, "envolvimento");
         this.envolvimento = str;
     }

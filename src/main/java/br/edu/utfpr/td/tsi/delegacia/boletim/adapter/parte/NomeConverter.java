@@ -1,23 +1,23 @@
 package br.edu.utfpr.td.tsi.delegacia.boletim.adapter.parte;
 
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.parte.NomeParte;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.parte.NomeValidator;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class NomeConverter implements AttributeConverter<NomeParte, String> {
+public class NomeConverter implements AttributeConverter<NomeValidator, String> {
 
     @Override
-    public String convertToDatabaseColumn(NomeParte nome) {
+    public String convertToDatabaseColumn(NomeValidator nome) {
         if (nome == null)
             return null;
         return nome.toString();
     }
 
     @Override
-    public NomeParte convertToEntityAttribute(String str) {
+    public NomeValidator convertToEntityAttribute(String str) {
         try {
-            return new NomeParte(str);
+            return new NomeValidator(str);
         } catch (Exception e) {
            return null;
         }

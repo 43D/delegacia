@@ -8,9 +8,9 @@ import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.placa.CidadeConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.placa.EstadoConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.placa.PlacaConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.enuns.UnidadeFederacao;
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.Cidade;
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.Estado;
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.PlacaVeiculo;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.CidadeValidator;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.EstadoValidator;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.PlacaVeiculoValidator;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
@@ -31,17 +31,17 @@ public class Placa implements Serializable {
 
     @Column(name = "placa")
     @Convert(converter = PlacaConverter.class)
-    private PlacaVeiculo placa;
+    private PlacaVeiculoValidator placa;
 
     @Column(name = "estado")
     @Convert(converter = EstadoConverter.class)
-    private Estado estado;
+    private EstadoValidator estado;
 
     @Column(name = "cidade")
     @Convert(converter = CidadeConverter.class)
-    private Cidade cidade;
+    private CidadeValidator cidade;
 
-    public Placa(PlacaVeiculo placa, Estado uf, Cidade cidade) {
+    public Placa(PlacaVeiculoValidator placa, EstadoValidator uf, CidadeValidator cidade) {
         this.placa = placa;
         this.estado = uf;
         this.cidade = cidade;
@@ -54,7 +54,7 @@ public class Placa implements Serializable {
         return placa.getPlaca();
     }
 
-    public void setPlaca(PlacaVeiculo placa) {
+    public void setPlaca(PlacaVeiculoValidator placa) {
         this.placa = placa;
     }
 
@@ -62,7 +62,7 @@ public class Placa implements Serializable {
         return estado.getEstado();
     }
 
-    public void setEstado(Estado uf) {
+    public void setEstado(EstadoValidator uf) {
         if (uf == null)
             throw new IllegalStateException("Estado Invalido!!!");
         this.estado = uf;
@@ -72,7 +72,7 @@ public class Placa implements Serializable {
         return cidade.getCidade();
     }
 
-    public void setCidade(Cidade cidade) {
+    public void setCidade(CidadeValidator cidade) {
         if (cidade == null)
             throw new IllegalStateException("Cidade Invalido!!!");
         this.cidade = cidade;

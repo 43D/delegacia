@@ -2,10 +2,10 @@ package br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo;
 
 import java.time.Year;
 
-public class AnoFabricado {
+public class AnoFabricadoValidator {
     private Integer ano;
 
-    public AnoFabricado(Integer ano) {
+    public AnoFabricadoValidator(Integer ano) {
         if (ano < 1900 || ano > Year.now().getValue())
             throw new IllegalStateException("Ano de fabricação Invalida!!!");
         this.ano = ano;

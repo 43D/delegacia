@@ -2,10 +2,10 @@ package br.edu.utfpr.td.tsi.delegacia.boletim.validator.parte;
 
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.StringValidator;
 
-public class TelefoneParte {
+public class TelefoneValidator {
     private String telefone;
 
-    public TelefoneParte(String telefone) {
+    public TelefoneValidator(String telefone) {
         String str = StringValidator.validateStringWithoutSpace(telefone, "telefone");
         if (str.charAt(0) == '0')
             str = str.substring(1);

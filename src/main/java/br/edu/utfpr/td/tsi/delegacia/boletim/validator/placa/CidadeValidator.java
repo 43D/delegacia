@@ -2,11 +2,11 @@ package br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa;
 
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.StringValidator;
 
-public class Cidade {
+public class CidadeValidator {
 
     private String cidade;
 
-    public Cidade(String cidade) {
+    public CidadeValidator(String cidade) {
         String str = StringValidator.validateStringWithSpace(cidade, "cidade");
         this.cidade = str;
     }

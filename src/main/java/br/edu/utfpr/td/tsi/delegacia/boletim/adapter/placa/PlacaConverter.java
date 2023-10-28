@@ -1,14 +1,14 @@
 package br.edu.utfpr.td.tsi.delegacia.boletim.adapter.placa;
 
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.PlacaVeiculo;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.PlacaVeiculoValidator;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class PlacaConverter implements AttributeConverter<PlacaVeiculo, String> {
+public class PlacaConverter implements AttributeConverter<PlacaVeiculoValidator, String> {
 
     @Override
-    public String convertToDatabaseColumn(PlacaVeiculo placa) {
+    public String convertToDatabaseColumn(PlacaVeiculoValidator placa) {
         if (placa == null)
             return null;
 
@@ -16,9 +16,9 @@ public class PlacaConverter implements AttributeConverter<PlacaVeiculo, String> 
     }
 
     @Override
-    public PlacaVeiculo convertToEntityAttribute(String str) {
+    public PlacaVeiculoValidator convertToEntityAttribute(String str) {
         try {
-            return new PlacaVeiculo(str);
+            return new PlacaVeiculoValidator(str);
         } catch (Exception e) {
             return null;
         }

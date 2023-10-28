@@ -10,10 +10,10 @@ import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.CorConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.MarcaConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.TipoVeiculoConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.enuns.VeiculosEnum;
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.AnoFabricado;
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.Cor;
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.Marca;
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.TipoVeiculo;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.AnoFabricadoValidator;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.CorValidator;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.MarcaValidator;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.TipoVeiculoValidator;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -39,21 +39,21 @@ public class Veiculo implements Serializable {
     private Placa emplacamento;
     @Column(name = "anoFabricacao")
     @Convert(converter = AnoConverter.class)
-    private AnoFabricado anoFabricacao;
+    private AnoFabricadoValidator anoFabricacao;
     @Column(name = "cor")
     @Convert(converter = CorConverter.class)
-    private Cor cor;
+    private CorValidator cor;
     @Column(name = "marca")
     @Convert(converter = MarcaConverter.class)
-    private Marca marca;
+    private MarcaValidator marca;
     @Column(name = "tipoVeiculo")
     @Convert(converter = TipoVeiculoConverter.class)
-    private TipoVeiculo tipoVeiculo;
+    private TipoVeiculoValidator tipoVeiculo;
     @OneToOne
     @PrimaryKeyJoinColumn
     private BoletimFurtoVeiculo envolvidoEm;
 
-    public Veiculo(long id, Placa emplacamento, AnoFabricado ano, Cor cor, Marca marca, TipoVeiculo tipoVeiculo,
+    public Veiculo(long id, Placa emplacamento, AnoFabricadoValidator ano, CorValidator cor, MarcaValidator marca, TipoVeiculoValidator tipoVeiculo,
             BoletimFurtoVeiculo envolvidoEm) {
         this.id = id;
         if (emplacamento == null)
@@ -74,7 +74,7 @@ public class Veiculo implements Serializable {
         return anoFabricacao.getAno();
     }
 
-    public void setAnoFabricacao(AnoFabricado anoFabricacao) {
+    public void setAnoFabricacao(AnoFabricadoValidator anoFabricacao) {
         if (anoFabricacao == null)
             throw new IllegalStateException("AnoFabricado Invalido!!!");
         this.anoFabricacao = anoFabricacao;
@@ -84,7 +84,7 @@ public class Veiculo implements Serializable {
         return cor.getCor();
     }
 
-    public void setCor(Cor cor) {
+    public void setCor(CorValidator cor) {
         if (cor == null)
             throw new IllegalStateException("Cor Invalido!!!");
         this.cor = cor;
@@ -94,7 +94,7 @@ public class Veiculo implements Serializable {
         return marca.getMarca();
     }
 
-    public void setMarca(Marca marca) {
+    public void setMarca(MarcaValidator marca) {
         if (marca == null)
             throw new IllegalStateException("Marca Invalido!!!");
         this.marca = marca;
@@ -104,7 +104,7 @@ public class Veiculo implements Serializable {
         return tipoVeiculo.getVeiculo();
     }
 
-    public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
+    public void setTipoVeiculo(TipoVeiculoValidator tipoVeiculo) {
         if (tipoVeiculo == null)
             throw new IllegalStateException("TipoVeiculo Invalido!!!");
         this.tipoVeiculo = tipoVeiculo;
