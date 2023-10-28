@@ -6,6 +6,7 @@ public class Cidade {
 
     private String cidade;
 
+    
     public Cidade(String cidade) {
         String str = StringValidator.validateStringWithSpace(cidade, "cidade");
         this.cidade = str;

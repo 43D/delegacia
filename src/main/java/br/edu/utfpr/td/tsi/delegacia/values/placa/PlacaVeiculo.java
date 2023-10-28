@@ -5,6 +5,7 @@ import br.edu.utfpr.td.tsi.delegacia.validator.StringValidator;
 public class PlacaVeiculo {
     private String placa;
 
+    
     public PlacaVeiculo(String placa) {
 
         String str = StringValidator.validateStringWithoutSpace(placa, "placa");

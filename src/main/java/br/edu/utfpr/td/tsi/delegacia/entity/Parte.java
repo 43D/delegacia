@@ -60,7 +60,7 @@ public class Parte implements Serializable {
 
     public void setNome(NomeParte nome) {
         if (nome == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nome Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Nome Invalido!!!");
         this.nome = nome;
     }
 
@@ -70,7 +70,7 @@ public class Parte implements Serializable {
 
     public void setEmail(EmailParte email) {
         if (email == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Email Invalido!!!");
         this.email = email;
     }
 
@@ -80,7 +80,7 @@ public class Parte implements Serializable {
 
     public void setTelefone(TelefoneParte telefone) {
         if (telefone == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Telefone Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Telefone Invalido!!!");
         this.telefone = telefone;
     }
 
@@ -90,7 +90,7 @@ public class Parte implements Serializable {
 
     public void setTipoEnvolvimento(EnvolvimentoParte tipoEnvolvimento) {
         if (tipoEnvolvimento == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "tipoEnvolvimento Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "tipoEnvolvimento Invalido!!!");
         this.tipoEnvolvimento = tipoEnvolvimento;
     }
 

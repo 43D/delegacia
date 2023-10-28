@@ -6,6 +6,7 @@ import br.edu.utfpr.td.tsi.delegacia.validator.StringValidator;
 public class PeriodoOcorrencia {
     private PeriodosEnum periodo;
 
+    
     public PeriodoOcorrencia(String periodo) {
         String str = StringValidator.validateStringWithSpace(periodo, "PeriodoOcorrencia");
 

@@ -5,6 +5,7 @@ import br.edu.utfpr.td.tsi.delegacia.validator.StringValidator;
 public class Logradouro {
     private String logradouro;
 
+    
     public Logradouro(String logradouro) {
         String str = StringValidator.validateStringWithSpace(logradouro, "Logradouro");
         this.logradouro = str;

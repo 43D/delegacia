@@ -5,6 +5,7 @@ import br.edu.utfpr.td.tsi.delegacia.validator.StringValidator;
 public class NomeParte {
     private String nome;
 
+    
     public NomeParte(String nome) {
         String str = StringValidator.validateStringWithSpace(nome, "nome");
         this.nome = str;

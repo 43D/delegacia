@@ -6,6 +6,7 @@ import br.edu.utfpr.td.tsi.delegacia.validator.StringValidator;
 public class Estado {
     private UnidadeFederacao estado;
 
+    
     public Estado(String estado) {
         String str = StringValidator.validateStringWithUnderline(estado, "Estado");
 

@@ -2,6 +2,9 @@ package br.edu.utfpr.td.tsi.delegacia.entity;
 
 import java.io.Serializable;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -57,7 +60,7 @@ public class Veiculo implements Serializable {
             BoletimFurtoVeiculo envolvidoEm) {
         this.id = id;
         if (emplacamento == null)
-            throw new IllegalStateException("Emplacamento Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Emplacamento Invalido!!!");
         this.emplacamento = emplacamento;
         this.anoFabricacao = ano;
         this.cor = cor;
@@ -76,7 +79,7 @@ public class Veiculo implements Serializable {
 
     public void setAnoFabricacao(AnoFabricado anoFabricacao) {
         if (anoFabricacao == null)
-            throw new IllegalStateException("AnoFabricado Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"AnoFabricado Invalido!!!");
         this.anoFabricacao = anoFabricacao;
     }
 
@@ -86,7 +89,7 @@ public class Veiculo implements Serializable {
 
     public void setCor(Cor cor) {
         if (cor == null)
-            throw new IllegalStateException("Cor Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Cor Invalido!!!");
         this.cor = cor;
     }
 
@@ -96,7 +99,7 @@ public class Veiculo implements Serializable {
 
     public void setMarca(Marca marca) {
         if (marca == null)
-            throw new IllegalStateException("Marca Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Marca Invalido!!!");
         this.marca = marca;
     }
 
@@ -106,7 +109,7 @@ public class Veiculo implements Serializable {
 
     public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
         if (tipoVeiculo == null)
-            throw new IllegalStateException("TipoVeiculo Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"TipoVeiculo Invalido!!!");
         this.tipoVeiculo = tipoVeiculo;
     }
 
@@ -116,7 +119,7 @@ public class Veiculo implements Serializable {
 
     public void setEmplacamento(Placa emplacamento) {
         if (emplacamento == null)
-            throw new IllegalStateException("Emplacamento Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Emplacamento Invalido!!!");
         this.emplacamento = emplacamento;
     }
 

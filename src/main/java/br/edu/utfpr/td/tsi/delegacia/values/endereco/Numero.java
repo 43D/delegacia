@@ -5,6 +5,7 @@ import br.edu.utfpr.td.tsi.delegacia.validator.StringValidator;
 public class Numero {
     private String numero;
 
+    
     public Numero(String numero) {
         String str = StringValidator.validateStringWithoutSpace(numero, "numero");
         this.numero = str;

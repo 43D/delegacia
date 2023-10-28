@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 
 import br.edu.utfpr.td.tsi.delegacia.entity.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.delegacia.repository.BoletimRepository;
+import br.edu.utfpr.td.tsi.delegacia.specification.BoletimFurtoVeiculoSpecification;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.DefaultValue;
@@ -67,9 +68,12 @@ public class BoletimEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createBoletim(BoletimFurtoVeiculo bo) {
+        if (!BoletimFurtoVeiculoSpecification.checkBoletimFurtoVeiculoSpecification(bo))
+            return Response.status(Response.Status.BAD_REQUEST).entity("Valores ausentes").build();
         repository.save(bo);
         bo.getVeiculoFurtado().setEnvolvidoEm(bo);
-        return Response.ok(bo).build();
+        
+        return Response.status(Response.Status.CREATED).entity(bo).build();
     }
 
     @PUT

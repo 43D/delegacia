@@ -5,6 +5,7 @@ import br.edu.utfpr.td.tsi.delegacia.validator.StringValidator;
 public class TelefoneParte {
     private String telefone;
 
+    
     public TelefoneParte(String telefone) {
         String str = StringValidator.validateStringWithoutSpace(telefone, "telefone");
         if (str.charAt(0) == '0')

@@ -66,7 +66,7 @@ public class Endereco implements Serializable {
 
     public void setLogradouro(Logradouro logradouro) {
         if (logradouro == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Logradouro Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Logradouro Invalido!!!");
         this.logradouro = logradouro;
     }
 
@@ -76,7 +76,7 @@ public class Endereco implements Serializable {
 
     public void setNumero(Numero numero) {
         if (numero == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Numero Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Numero Invalido!!!");
         this.numero = numero;
     }
 
@@ -86,7 +86,7 @@ public class Endereco implements Serializable {
 
     public void setBairro(Bairro bairro) {
         if (bairro == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bairro Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Bairro Invalido!!!");
         this.bairro = bairro;
     }
 
@@ -96,7 +96,7 @@ public class Endereco implements Serializable {
 
     public void setCidade(Cidade cidade) {
         if (cidade == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cidade Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Cidade Invalido!!!");
         this.cidade = cidade;
     }
 
@@ -106,7 +106,7 @@ public class Endereco implements Serializable {
 
     public void setEstado(Estado estado) {
         if (estado == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Estado Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Estado Invalido!!!");
         this.estado = estado;
     }
 

@@ -64,14 +64,6 @@ public class BoletimFurtoVeiculo implements Serializable {
         this.veiculoFurtado = veiculoFurtado;
     }
 
-    public BoletimFurtoVeiculo(long id) {
-        this.dataOcorrencia = null;
-        this.periodoOcorrencia = null;
-        this.partes = null;
-        this.localOcorrencia = null;
-        this.veiculoFurtado = null;
-    }
-
     public BoletimFurtoVeiculo() {
     }
 
@@ -97,7 +89,7 @@ public class BoletimFurtoVeiculo implements Serializable {
 
     public void setDataOcorrencia(DataOcorrencia dataOcorrencia) {
         if (dataOcorrencia == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "dataOcorrencia Invalida!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "dataOcorrencia Invalida!!!");
         this.dataOcorrencia = dataOcorrencia;
     }
 
@@ -107,7 +99,7 @@ public class BoletimFurtoVeiculo implements Serializable {
 
     public void setPeriodoOcorrencia(PeriodoOcorrencia periodoOcorrencia) {
         if (periodoOcorrencia == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "periodoOcorrencia Invalida!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "periodoOcorrencia Invalida!!!");
         this.periodoOcorrencia = periodoOcorrencia;
     }
 
@@ -125,7 +117,7 @@ public class BoletimFurtoVeiculo implements Serializable {
 
     public void setPartes(List<Parte> partes) {
         if (partes == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Partes Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Partes Invalido!!!");
         this.partes = partes;
     }
 
@@ -139,7 +131,7 @@ public class BoletimFurtoVeiculo implements Serializable {
 
     public void setLocalOcorrencia(Endereco localOcorrencia) {
         if (localOcorrencia == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "localOcorrencia Invalida!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "localOcorrencia Invalida!!!");
         this.localOcorrencia = localOcorrencia;
     }
 
@@ -149,7 +141,7 @@ public class BoletimFurtoVeiculo implements Serializable {
 
     public void setVeiculoFurtado(Veiculo veiculoFurtado) {
         if (veiculoFurtado == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "veiculoFurtado Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "veiculoFurtado Invalido!!!");
         this.veiculoFurtado = veiculoFurtado;
     }
 

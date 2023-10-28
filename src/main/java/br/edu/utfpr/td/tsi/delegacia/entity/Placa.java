@@ -2,6 +2,9 @@ package br.edu.utfpr.td.tsi.delegacia.entity;
 
 import java.io.Serializable;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.edu.utfpr.td.tsi.delegacia.adapter.placa.CidadeConverter;
@@ -64,7 +67,7 @@ public class Placa implements Serializable {
 
     public void setEstado(Estado uf) {
         if (uf == null)
-            throw new IllegalStateException("Estado Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Estado Invalido!!!");
         this.estado = uf;
     }
 
@@ -74,7 +77,7 @@ public class Placa implements Serializable {
 
     public void setCidade(Cidade cidade) {
         if (cidade == null)
-            throw new IllegalStateException("Cidade Invalido!!!");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Cidade Invalido!!!");
         this.cidade = cidade;
     }
 
