@@ -11,6 +11,6 @@ import jakarta.ws.rs.ApplicationPath;
 public class Jersey extends ResourceConfig{
     public Jersey(){
         this.register(RequestContextFilter.class);
-		this.packages("br.edu.utfpr.td.tsi.delegacia.boletim.route");
+		this.packages("br.edu.utfpr.td.tsi.delegacia.route");
     }
 }

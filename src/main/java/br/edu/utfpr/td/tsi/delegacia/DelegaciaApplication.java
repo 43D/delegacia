@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-import br.edu.utfpr.td.tsi.delegacia.boletim.repository.BoletimRepository;
+import br.edu.utfpr.td.tsi.delegacia.repository.BoletimRepository;
 import jakarta.annotation.PostConstruct;
 
 @SpringBootApplication
