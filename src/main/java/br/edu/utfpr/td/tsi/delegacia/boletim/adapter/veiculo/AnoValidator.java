@@ -5,15 +5,15 @@ import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class AnoValidator implements AttributeConverter<AnoFabricado, Short> {
+public class AnoValidator implements AttributeConverter<AnoFabricado, Integer> {
 
     @Override
-    public Short convertToDatabaseColumn(AnoFabricado ano) {
+    public Integer convertToDatabaseColumn(AnoFabricado ano) {
         return ano.getAno();
     }
 
     @Override
-    public AnoFabricado convertToEntityAttribute(Short str) {
+    public AnoFabricado convertToEntityAttribute(Integer str) {
         try {
             return new AnoFabricado(str);
         } catch (Exception e) {

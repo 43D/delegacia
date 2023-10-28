@@ -1,7 +1,9 @@
 package br.edu.utfpr.td.tsi.delegacia.boletim.entity;
 
 import java.io.Serializable;
-import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.AnoValidator;
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.CorValidator;
@@ -20,12 +22,13 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Veiculo")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Veiculo implements Serializable {
 
     @Id
@@ -46,12 +49,12 @@ public class Veiculo implements Serializable {
     @Column(name = "tipoVeiculo")
     @Convert(converter = TipoVeiculoValidator.class)
     private TipoVeiculo tipoVeiculo;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @Column(name = "envolvidoEm")
-    private List<BoletimFurtoVeiculo> envolvidoEm;
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private BoletimFurtoVeiculo envolvidoEm;
 
     public Veiculo(long id, Placa emplacamento, AnoFabricado ano, Cor cor, Marca marca, TipoVeiculo tipoVeiculo,
-            List<BoletimFurtoVeiculo> envolvidoEm) {
+            BoletimFurtoVeiculo envolvidoEm) {
         this.id = id;
         if (emplacamento == null)
             throw new IllegalStateException("Emplacamento Invalido!!!");
@@ -64,9 +67,10 @@ public class Veiculo implements Serializable {
     }
 
     public Veiculo() {
+
     }
 
-    public short getAnoFabricacao() {
+    public Integer getAnoFabricacao() {
         return anoFabricacao.getAno();
     }
 
@@ -116,16 +120,12 @@ public class Veiculo implements Serializable {
         this.emplacamento = emplacamento;
     }
 
-    public List<BoletimFurtoVeiculo> getEnvolvidoEm() {
+    public BoletimFurtoVeiculo getEnvolvidoEm() {
         return envolvidoEm;
     }
 
-    public void setEnvolvidoEm(List<BoletimFurtoVeiculo> envolvidoEm) {
+    public void setEnvolvidoEm(BoletimFurtoVeiculo envolvidoEm) {
         this.envolvidoEm = envolvidoEm;
-    }
-
-    public void addEnvolvidoEm(BoletimFurtoVeiculo envolvido) {
-        this.envolvidoEm.add(envolvido);
     }
 
     public long getId() {

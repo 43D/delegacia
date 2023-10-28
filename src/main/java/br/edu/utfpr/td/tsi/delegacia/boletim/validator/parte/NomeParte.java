@@ -6,7 +6,7 @@ public class NomeParte {
     private String nome;
 
     public NomeParte(String nome) throws Exception {
-        String str = StringValidator.validateStringWithoutSpace(nome, "nome");
+        String str = StringValidator.validateStringWithSpace(nome, "nome");
         this.nome = str;
     }
 

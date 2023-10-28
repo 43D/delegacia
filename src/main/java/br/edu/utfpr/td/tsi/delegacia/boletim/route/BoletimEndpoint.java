@@ -67,8 +67,8 @@ public class BoletimEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createBoletim(BoletimFurtoVeiculo bo) {
-        repository.saveAndFlush(bo);
-
+        repository.save(bo);
+        bo.getVeiculoFurtado().setEnvolvidoEm(bo);
         return Response.ok(bo).build();
     }
 
