@@ -7,10 +7,12 @@ public class TelefoneParte {
 
     public TelefoneParte(String telefone) {
         String str = StringValidator.validateStringWithoutSpace(telefone, "telefone");
+        if (str.charAt(0) == '0')
+            str = str.substring(1);
 
         String regex = "[0-9]{2}[0-9]{1}[0-9]{8}|[0-9]{2}[0-9]{8}";
 
-        if (!StringValidator.validateRegex(regex, str))
+        if (!StringValidator.validateRegex(regex, str) || str.length() > 11)
             throw new IllegalStateException("telefone Invalida!!!");
         this.telefone = str;
     }

@@ -8,6 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.parte.EmailConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.parte.EnvolvimentoConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.parte.NomeConverter;
+import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.parte.TelefoneConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.parte.EmailParte;
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.parte.EnvolvimentoParte;
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.parte.NomeParte;
@@ -35,7 +36,7 @@ public class Parte implements Serializable {
     @Convert(converter = EmailConverter.class)
     private EmailParte email;
     @Column(name = "telefone")
-    @Convert(converter = TelefoneParte.class)
+    @Convert(converter = TelefoneConverter.class)
     private TelefoneParte telefone;
     @Column(name = "tipoEnvolvimento")
     @Convert(converter = EnvolvimentoConverter.class)
