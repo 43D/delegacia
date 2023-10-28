@@ -5,7 +5,7 @@ import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class AnoValidator implements AttributeConverter<AnoFabricado, Integer> {
+public class AnoConverter implements AttributeConverter<AnoFabricado, Integer> {
 
     @Override
     public Integer convertToDatabaseColumn(AnoFabricado ano) {

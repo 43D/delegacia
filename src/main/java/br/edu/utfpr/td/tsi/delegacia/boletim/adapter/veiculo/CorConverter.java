@@ -5,7 +5,7 @@ import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class CorValidator implements AttributeConverter<Cor, String> {
+public class CorConverter implements AttributeConverter<Cor, String> {
 
     @Override
     public String convertToDatabaseColumn(Cor cor) {

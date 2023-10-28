@@ -5,10 +5,10 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.AnoValidator;
-import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.CorValidator;
-import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.MarcaValidator;
-import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.TipoVeiculoValidator;
+import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.AnoConverter;
+import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.CorConverter;
+import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.MarcaConverter;
+import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo.TipoVeiculoConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.enuns.VeiculosEnum;
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.AnoFabricado;
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.Cor;
@@ -38,16 +38,16 @@ public class Veiculo implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Placa emplacamento;
     @Column(name = "anoFabricacao")
-    @Convert(converter = AnoValidator.class)
+    @Convert(converter = AnoConverter.class)
     private AnoFabricado anoFabricacao;
     @Column(name = "cor")
-    @Convert(converter = CorValidator.class)
+    @Convert(converter = CorConverter.class)
     private Cor cor;
     @Column(name = "marca")
-    @Convert(converter = MarcaValidator.class)
+    @Convert(converter = MarcaConverter.class)
     private Marca marca;
     @Column(name = "tipoVeiculo")
-    @Convert(converter = TipoVeiculoValidator.class)
+    @Convert(converter = TipoVeiculoConverter.class)
     private TipoVeiculo tipoVeiculo;
     @OneToOne
     @PrimaryKeyJoinColumn

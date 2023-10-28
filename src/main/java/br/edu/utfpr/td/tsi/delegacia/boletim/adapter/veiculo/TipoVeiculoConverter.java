@@ -5,7 +5,7 @@ import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class TipoVeiculoValidator implements AttributeConverter<TipoVeiculo, String> {
+public class TipoVeiculoConverter implements AttributeConverter<TipoVeiculo, String> {
 
     @Override
     public String convertToDatabaseColumn(TipoVeiculo tipoVeiculo) {

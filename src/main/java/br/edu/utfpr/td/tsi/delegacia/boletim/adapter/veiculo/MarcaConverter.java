@@ -5,7 +5,7 @@ import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class MarcaValidator implements AttributeConverter<Marca, String> {
+public class MarcaConverter implements AttributeConverter<Marca, String> {
 
     @Override
     public String convertToDatabaseColumn(Marca marca) {
