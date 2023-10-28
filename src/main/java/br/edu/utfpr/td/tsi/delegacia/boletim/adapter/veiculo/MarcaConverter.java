@@ -1,14 +1,14 @@
 package br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo;
 
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.MarcaValidator;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.Marca;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class MarcaConverter implements AttributeConverter<MarcaValidator, String> {
+public class MarcaConverter implements AttributeConverter<Marca, String> {
 
     @Override
-    public String convertToDatabaseColumn(MarcaValidator marca) {
+    public String convertToDatabaseColumn(Marca marca) {
         if (marca == null)
             return null;
 
@@ -16,9 +16,9 @@ public class MarcaConverter implements AttributeConverter<MarcaValidator, String
     }
 
     @Override
-    public MarcaValidator convertToEntityAttribute(String str) {
+    public Marca convertToEntityAttribute(String str) {
         try {
-            return new MarcaValidator(str);
+            return new Marca(str);
         } catch (Exception e) {
             return null;
         }

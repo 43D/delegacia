@@ -1,14 +1,14 @@
 package br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo;
 
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.CorValidator;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.Cor;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class CorConverter implements AttributeConverter<CorValidator, String> {
+public class CorConverter implements AttributeConverter<Cor, String> {
 
     @Override
-    public String convertToDatabaseColumn(CorValidator cor) {
+    public String convertToDatabaseColumn(Cor cor) {
         if (cor == null)
             return null;
 
@@ -16,9 +16,9 @@ public class CorConverter implements AttributeConverter<CorValidator, String> {
     }
 
     @Override
-    public CorValidator convertToEntityAttribute(String str) {
+    public Cor convertToEntityAttribute(String str) {
         try {
-            return new CorValidator(str);
+            return new Cor(str);
         } catch (Exception e) {
             return null;
         }

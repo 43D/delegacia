@@ -2,10 +2,10 @@ package br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa;
 
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.StringValidator;
 
-public class PlacaVeiculoValidator {
+public class PlacaVeiculo {
     private String placa;
 
-    public PlacaVeiculoValidator(String placa) {
+    public PlacaVeiculo(String placa) {
 
         String str = StringValidator.validateStringWithoutSpace(placa, "placa");
 

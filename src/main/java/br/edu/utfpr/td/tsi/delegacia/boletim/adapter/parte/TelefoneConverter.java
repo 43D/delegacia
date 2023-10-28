@@ -1,23 +1,23 @@
 package br.edu.utfpr.td.tsi.delegacia.boletim.adapter.parte;
 
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.parte.TelefoneValidator;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.parte.TelefoneParte;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class TelefoneConverter implements AttributeConverter<TelefoneValidator, String> {
+public class TelefoneConverter implements AttributeConverter<TelefoneParte, String> {
 
     @Override
-    public String convertToDatabaseColumn(TelefoneValidator telefone) {
+    public String convertToDatabaseColumn(TelefoneParte telefone) {
         if (telefone == null)
             return null;
         return telefone.toString();
     }
 
     @Override
-    public TelefoneValidator convertToEntityAttribute(String str) {
+    public TelefoneParte convertToEntityAttribute(String str) {
         try {
-            return new TelefoneValidator(str);
+            return new TelefoneParte(str);
         } catch (Exception e) {
            return null;
         }

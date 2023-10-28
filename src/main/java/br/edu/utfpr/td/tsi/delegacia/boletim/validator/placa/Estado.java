@@ -3,10 +3,10 @@ package br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa;
 import br.edu.utfpr.td.tsi.delegacia.boletim.enuns.UnidadeFederacao;
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.StringValidator;
 
-public class EstadoValidator {
+public class Estado {
     private UnidadeFederacao estado;
 
-    public EstadoValidator(String estado) {
+    public Estado(String estado) {
         String str = StringValidator.validateStringWithUnderline(estado, "Estado");
 
         UnidadeFederacao uf = null;

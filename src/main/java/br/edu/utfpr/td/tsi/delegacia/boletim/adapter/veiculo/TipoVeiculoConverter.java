@@ -1,14 +1,14 @@
 package br.edu.utfpr.td.tsi.delegacia.boletim.adapter.veiculo;
 
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.TipoVeiculoValidator;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.Veiculo.TipoVeiculo;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class TipoVeiculoConverter implements AttributeConverter<TipoVeiculoValidator, String> {
+public class TipoVeiculoConverter implements AttributeConverter<TipoVeiculo, String> {
 
     @Override
-    public String convertToDatabaseColumn(TipoVeiculoValidator tipoVeiculo) {
+    public String convertToDatabaseColumn(TipoVeiculo tipoVeiculo) {
         if (tipoVeiculo == null)
             return null;
 
@@ -16,9 +16,9 @@ public class TipoVeiculoConverter implements AttributeConverter<TipoVeiculoValid
     }
 
     @Override
-    public TipoVeiculoValidator convertToEntityAttribute(String str) {
+    public TipoVeiculo convertToEntityAttribute(String str) {
         try {
-            return new TipoVeiculoValidator(str);
+            return new TipoVeiculo(str);
         } catch (Exception e) {
             return null;
         }

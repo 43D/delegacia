@@ -5,10 +5,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import br.edu.utfpr.td.tsi.delegacia.boletim.validator.StringValidator;
 
-public class BairroValidator {
+public class Bairro {
     private String email;
 
-    public BairroValidator(String email) {
+    public Bairro(String email) {
         String str = StringValidator.validateString(email, "email");
 
         String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$";

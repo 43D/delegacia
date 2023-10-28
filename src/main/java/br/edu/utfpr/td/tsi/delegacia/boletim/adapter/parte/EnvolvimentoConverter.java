@@ -1,23 +1,23 @@
 package br.edu.utfpr.td.tsi.delegacia.boletim.adapter.parte;
 
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.parte.EnvolvimentoValidator;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.parte.EnvolvimentoParte;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class EnvolvimentoConverter implements AttributeConverter<EnvolvimentoValidator, String> {
+public class EnvolvimentoConverter implements AttributeConverter<EnvolvimentoParte, String> {
 
     @Override
-    public String convertToDatabaseColumn(EnvolvimentoValidator envolvidoEm) {
+    public String convertToDatabaseColumn(EnvolvimentoParte envolvidoEm) {
         if (envolvidoEm == null)
             return null;
         return envolvidoEm.toString();
     }
 
     @Override
-    public EnvolvimentoValidator convertToEntityAttribute(String str) {
+    public EnvolvimentoParte convertToEntityAttribute(String str) {
         try {
-            return new EnvolvimentoValidator(str);
+            return new EnvolvimentoParte(str);
         } catch (Exception e) {
             return null;
         }

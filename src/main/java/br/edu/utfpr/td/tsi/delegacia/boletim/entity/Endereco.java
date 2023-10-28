@@ -8,8 +8,8 @@ import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.endereco.NumeroConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.placa.CidadeConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.adapter.placa.EstadoConverter;
 import br.edu.utfpr.td.tsi.delegacia.boletim.enuns.UnidadeFederacao;
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.CidadeValidator;
-import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.EstadoValidator;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.Cidade;
+import br.edu.utfpr.td.tsi.delegacia.boletim.validator.placa.Estado;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
@@ -37,12 +37,12 @@ public class Endereco implements Serializable {
     private String bairro;
     @Column(name = "cidade")
     @Convert(converter = CidadeConverter.class)
-    private CidadeValidator cidade;
+    private Cidade cidade;
     @Column(name = "estado")
     @Convert(converter = EstadoConverter.class)
-    private EstadoValidator estado;
+    private Estado estado;
 
-    public Endereco(long id, String logradouro, int numero, String bairro, CidadeValidator cidade, EstadoValidator estado) {
+    public Endereco(long id, String logradouro, int numero, String bairro, Cidade cidade, Estado estado) {
         this.id = id;
         this.logradouro = logradouro; //
         this.numero = numero; //
@@ -82,7 +82,7 @@ public class Endereco implements Serializable {
         return cidade.getCidade();
     }
 
-    public void setCidade(CidadeValidator cidade) {
+    public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
 
@@ -90,7 +90,7 @@ public class Endereco implements Serializable {
         return estado.getEstado();
     }
 
-    public void setEstado(EstadoValidator estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
