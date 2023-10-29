@@ -8,7 +8,7 @@ public class Cidade {
 
     
     public Cidade(String cidade) {
-        String str = StringValidator.validateStringWithSpace(cidade, "cidade");
+        String str = StringValidator.validateString(cidade, "cidade");
         this.cidade = str;
     }
 

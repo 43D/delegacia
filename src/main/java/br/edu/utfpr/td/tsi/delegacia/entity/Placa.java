@@ -81,9 +81,18 @@ public class Placa implements Serializable {
         this.cidade = cidade;
     }
 
+    
     @Override
     public String toString() {
         return "{placa: " + placa + ", estado: " + estado + ", cidade: " + cidade + "}";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

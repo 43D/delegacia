@@ -3,15 +3,12 @@ package br.edu.utfpr.td.tsi.delegacia.route;
 import jakarta.ws.rs.PathParam;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 import br.edu.utfpr.td.tsi.delegacia.entity.BoletimFurtoVeiculo;
-import br.edu.utfpr.td.tsi.delegacia.repository.BoletimRepository;
+import br.edu.utfpr.td.tsi.delegacia.exception.EntidadeInexistenteException;
+import br.edu.utfpr.td.tsi.delegacia.services.boletim.iBoletimServices;
 import br.edu.utfpr.td.tsi.delegacia.specification.BoletimFurtoVeiculoSpecification;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -28,18 +25,24 @@ import jakarta.ws.rs.core.Response;
 @Path("boletim")
 public class BoletimEndpoint {
     @Autowired
-    BoletimRepository repository;
+    iBoletimServices boletimService;
 
     @QueryParam("page")
     @DefaultValue("1")
     private int page;
-    Pageable pageable = PageRequest.of(page, 50);
+
+    @QueryParam("cidade")
+    @DefaultValue("")
+    private String cidade;
+
+    @QueryParam("periodo")
+    @DefaultValue("")
+    private String periodo;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBoletins() {
-        Page<BoletimFurtoVeiculo> boletins = repository.findAll(pageable);
-        List<BoletimFurtoVeiculo> boletinsList = boletins.getContent();
+        List<BoletimFurtoVeiculo> boletinsList = boletimService.getBoletimPage(page, cidade, periodo);
         if (boletinsList.size() == 0 && page > 1)
             return Response.status(Response.Status.NOT_FOUND)
                     .entity("Paginação invalida")
@@ -54,27 +57,31 @@ public class BoletimEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     public Response getBoletimByID() {
-        Optional<BoletimFurtoVeiculo> boletins = repository.findById(id);
+        BoletimFurtoVeiculo bo = boletimService.getBoletimById(id);
 
-        if (!boletins.isPresent()) {
+        if (bo == null)
             return Response.status(Response.Status.NOT_FOUND)
                     .entity("Boletim não encontrado")
                     .build();
-        }
-        return Response.ok(boletins.get()).build();
+
+        return Response.ok(bo).build();
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createBoletim(BoletimFurtoVeiculo bo) {
+        if (bo == null)
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Objeto de entrada ausente!!")
+                    .build();
+
         if (!BoletimFurtoVeiculoSpecification.checkBoletimFurtoVeiculoSpecification(bo))
-            return Response.status(Response.Status.BAD_REQUEST).entity("Valores ausentes").build();
+            return Response.status(Response.Status.BAD_REQUEST).entity("Valores ausentes no objeto!!!").build();
 
-        repository.save(bo);
-        bo.getVeiculoFurtado().setEnvolvidoEm(bo);
+        BoletimFurtoVeiculo boSaved = boletimService.createBoletimId(bo);
 
-        return Response.status(Response.Status.CREATED).entity(bo).build();
+        return Response.status(Response.Status.CREATED).entity(boSaved).build();
     }
 
     @PUT
@@ -82,8 +89,20 @@ public class BoletimEndpoint {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     public Response updateBoletimByID(BoletimFurtoVeiculo bo) {
+        if (bo == null)
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Objeto de entrada ausente!!")
+                    .build();
 
-        return Response.ok(bo).build();
+        if (!BoletimFurtoVeiculoSpecification.checkBoletimFurtoVeiculoSpecification(bo))
+            return Response.status(Response.Status.BAD_REQUEST).entity("Valores ausentes no objeto!!!").build();
+
+        try {
+            BoletimFurtoVeiculo boUpdated = boletimService.updateBoletim(bo, id);
+            return Response.status(Response.Status.CREATED).entity(boUpdated).build();
+        } catch (EntidadeInexistenteException e) {
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        }
     }
 
     @DELETE
@@ -91,7 +110,12 @@ public class BoletimEndpoint {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     public Response deleteBoletimByID() {
-        return Response.ok("Teste bem sucedido: delete: " + id).build();
+        try {
+            boletimService.deleteBoletimByID(id);
+        } catch (EntidadeInexistenteException e) {
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        }
+        return Response.ok("deletado ").build();
     }
 
 }

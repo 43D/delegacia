@@ -91,8 +91,7 @@ public class DatabaseCretor {
     }
 
     private static Endereco createEndereco(String[] nextRecor) {
-
-        Logradouro logradouro = new Logradouro((nextRecor[13].isEmpty()) ? "NAO TEM" :nextRecor[13]);
+        Logradouro logradouro = new Logradouro((nextRecor[13].isEmpty()) ? "NAO TEM" : nextRecor[13]);
         Numero numero = new Numero(nextRecor[14]);
         Bairro bairro = new Bairro((nextRecor[15].isEmpty()) ? "NAO TEM" : nextRecor[15]);
         Cidade cidade = new Cidade(nextRecor[16]);

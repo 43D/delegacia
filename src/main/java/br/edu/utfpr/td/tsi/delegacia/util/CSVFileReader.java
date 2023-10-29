@@ -37,6 +37,9 @@ public class CSVFileReader implements iCSVFileReader {
             while ((nextRecord = csvReader.readNext()) != null) {
                 DatabaseCretor.create(nextRecord, rep);
                 System.out.println(i++ + ", " + ((double) i / 15968 * 100) + "%");
+
+                if (i == 200)
+                    break;
             }
             csvReader.close();
             System.out.println("Total de dados: " + rep.count());

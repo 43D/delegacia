@@ -27,11 +27,11 @@ public class VeiculoEndpoint {
     @QueryParam("page")
     @DefaultValue("1")
     private int page;
-    Pageable pageable = PageRequest.of(page, 50);
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getVeiculos() {
+        Pageable pageable = PageRequest.of(page - 1, 50);
         Page<Veiculo> veiculos = repository.findAll(pageable);
         List<Veiculo> veiculosList = veiculos.getContent();
         if (veiculosList.size() == 0 && page > 1)
