@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-import br.edu.utfpr.td.tsi.delegacia.repository.BoletimRepository;
+import br.edu.utfpr.td.tsi.delegacia.util.iCSVFileReader;
 import jakarta.annotation.PostConstruct;
 
 @SpringBootApplication
@@ -16,12 +16,10 @@ public class DelegaciaApplication {
 	}
 
 	@Autowired
-	BoletimRepository rep;
+	iCSVFileReader cfr;
 	@PostConstruct
 	public void init() {
 		System.out.println("teste ---------------------------");
-		long c = rep.count();
-		System.out.println(c + " <-----");
-		System.out.println("teste ---------------------------");
+		cfr.read();
 	}
 }
