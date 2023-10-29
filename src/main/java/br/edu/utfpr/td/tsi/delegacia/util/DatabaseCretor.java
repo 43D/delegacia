@@ -35,7 +35,7 @@ public class DatabaseCretor {
                 List<Parte> partes = createPartes();
                 Endereco endereco = createEndereco(nextRecor);
                 BoletimFurtoVeiculo boletim = createBoletimFurtoVeiculo(nextRecor, veiculo, partes, endereco);
-                System.out.println(boletim);
+                rep.saveAndFlush(boletim);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -48,7 +48,7 @@ public class DatabaseCretor {
         String crime = nextRecor[26];
         String data = nextRecor[5].replaceAll("/", "-");
         DataOcorrencia dataOcorrencia = new DataOcorrencia(data);
-        PeriodoOcorrencia periodoOcorrencia = new PeriodoOcorrencia(nextRecor[7]);
+        PeriodoOcorrencia periodoOcorrencia = new PeriodoOcorrencia(nextRecor[7].replaceAll("Ã", "A"));
         boolean flagrante = nextRecor[11].toUpperCase().contains("SIM");
 
         BoletimFurtoVeiculo bo = new BoletimFurtoVeiculo(crime, dataOcorrencia,
@@ -68,7 +68,11 @@ public class DatabaseCretor {
         AnoFabricado anoFabricacao = new AnoFabricado(Integer.parseInt(nextRecor[49]));
         Cor cor = new Cor(nextRecor[47]);
         Marca marca = new Marca(nextRecor[48]);
-        TipoVeiculo tipoVeiculo = new TipoVeiculo(nextRecor[51]);
+        TipoVeiculo tipoVeiculo = new TipoVeiculo(nextRecor[51]
+                .replaceAll("Á", "A")
+                .replaceAll("Ã", "A")
+                .replaceAll("ã", "A")
+                .replaceAll("-", "_"));
         Veiculo veiculo = new Veiculo(placa, anoFabricacao, cor, marca, tipoVeiculo);
         return veiculo;
     }
@@ -88,9 +92,9 @@ public class DatabaseCretor {
 
     private static Endereco createEndereco(String[] nextRecor) {
 
-        Logradouro logradouro = new Logradouro(nextRecor[13]);
+        Logradouro logradouro = new Logradouro((nextRecor[13].isEmpty()) ? "NAO TEM" :nextRecor[13]);
         Numero numero = new Numero(nextRecor[14]);
-        Bairro bairro = new Bairro(nextRecor[15]);
+        Bairro bairro = new Bairro((nextRecor[15].isEmpty()) ? "NAO TEM" : nextRecor[15]);
         Cidade cidade = new Cidade(nextRecor[16]);
         Estado estado = new Estado(nextRecor[17]);
 

@@ -39,6 +39,7 @@ public class CSVFileReader implements iCSVFileReader {
                 System.out.println(i++ + ", " + ((double) i / 15968 * 100) + "%");
             }
             csvReader.close();
+            System.out.println("Total de dados: " + rep.count());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (CsvValidationException e) {
