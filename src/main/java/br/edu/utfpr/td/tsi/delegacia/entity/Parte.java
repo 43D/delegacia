@@ -42,9 +42,8 @@ public class Parte implements Serializable {
     @Convert(converter = EnvolvimentoConverter.class)
     private EnvolvimentoParte tipoEnvolvimento;
 
-    public Parte(long id, NomeParte nome, EmailParte email, TelefoneParte telefone,
+    public Parte(NomeParte nome, EmailParte email, TelefoneParte telefone,
             EnvolvimentoParte tipoEnvolvimento) {
-        this.id = id;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;

@@ -19,7 +19,6 @@ public class DelegaciaApplication {
 	iCSVFileReader cfr;
 	@PostConstruct
 	public void init() {
-		System.out.println("teste ---------------------------");
 		cfr.read();
 	}
 }

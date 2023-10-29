@@ -48,8 +48,7 @@ public class Endereco implements Serializable {
     @Convert(converter = EstadoConverter.class)
     private Estado estado;
 
-    public Endereco(long id, Logradouro logradouro, Numero numero, Bairro bairro, Cidade cidade, Estado estado) {
-        this.id = id;
+    public Endereco(Logradouro logradouro, Numero numero, Bairro bairro, Cidade cidade, Estado estado) {
         this.logradouro = logradouro;
         this.numero = numero;
         this.bairro = bairro;

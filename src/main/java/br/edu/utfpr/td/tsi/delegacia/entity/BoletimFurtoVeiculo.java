@@ -55,11 +55,12 @@ public class BoletimFurtoVeiculo implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Veiculo veiculoFurtado;
 
-    public BoletimFurtoVeiculo(String numeroBO, boolean flagrante, DataOcorrencia dataOcorrencia,
-            PeriodoOcorrencia periodoOcorrencia, List<Parte> partes, Endereco localOcorrencia, Veiculo veiculoFurtado) {
-        this.flagrante = flagrante;
+    public BoletimFurtoVeiculo(String crime, DataOcorrencia dataOcorrencia, PeriodoOcorrencia periodoOcorrencia,
+            boolean flagrante, List<Parte> partes, Endereco localOcorrencia, Veiculo veiculoFurtado) {
+        this.crime = crime;
         this.dataOcorrencia = dataOcorrencia;
         this.periodoOcorrencia = periodoOcorrencia;
+        this.flagrante = flagrante;
         this.partes = partes;
         this.localOcorrencia = localOcorrencia;
         this.veiculoFurtado = veiculoFurtado;

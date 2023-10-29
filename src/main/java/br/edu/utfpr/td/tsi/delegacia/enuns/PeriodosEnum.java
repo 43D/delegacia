@@ -1,7 +1,7 @@
 package br.edu.utfpr.td.tsi.delegacia.enuns;
 
 public enum PeriodosEnum {
-    MANHA("PELA MANHÃ"),
+    MANHA("PELA MANH"),
     TARDE("A TARDE"),
     NOITE("A NOITE"),
     MADRUGADA("DE MADRUGADA"),

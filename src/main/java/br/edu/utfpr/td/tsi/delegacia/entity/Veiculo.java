@@ -56,8 +56,18 @@ public class Veiculo implements Serializable {
     @PrimaryKeyJoinColumn
     private BoletimFurtoVeiculo envolvidoEm;
 
-    public Veiculo() {
+    
 
+    public Veiculo(Placa emplacamento, AnoFabricado anoFabricacao, Cor cor, Marca marca,
+            TipoVeiculo tipoVeiculo) {
+        this.emplacamento = emplacamento;
+        this.anoFabricacao = anoFabricacao;
+        this.cor = cor;
+        this.marca = marca;
+        this.tipoVeiculo = tipoVeiculo;
+    }
+
+    public Veiculo() {
     }
 
     public Integer getAnoFabricacao() {
