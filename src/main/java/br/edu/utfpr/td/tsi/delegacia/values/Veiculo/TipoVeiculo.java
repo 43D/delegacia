@@ -9,7 +9,7 @@ public class TipoVeiculo {
     
     public TipoVeiculo(String veiculo) {
         veiculo = veiculo.replaceAll("/", " ");
-        String str = StringValidator.validateStringWithUnderline(veiculo, "veiculo");
+        String str = StringValidator.validateString(veiculo, "veiculo");
         VeiculosEnum veicEnum = VeiculosEnum.valueOf(str);
         this.veiculo = veicEnum;
     }
