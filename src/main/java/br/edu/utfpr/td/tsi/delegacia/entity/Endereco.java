@@ -10,7 +10,6 @@ import br.edu.utfpr.td.tsi.delegacia.adapter.endereco.CidadeConverter;
 import br.edu.utfpr.td.tsi.delegacia.adapter.endereco.EstadoConverter;
 import br.edu.utfpr.td.tsi.delegacia.adapter.endereco.LogradouroConverter;
 import br.edu.utfpr.td.tsi.delegacia.adapter.endereco.NumeroConverter;
-import br.edu.utfpr.td.tsi.delegacia.enuns.UnidadeFederacao;
 import br.edu.utfpr.td.tsi.delegacia.values.endereco.Bairro;
 import br.edu.utfpr.td.tsi.delegacia.values.endereco.Cidade;
 import br.edu.utfpr.td.tsi.delegacia.values.endereco.Estado;
@@ -59,8 +58,16 @@ public class Endereco implements Serializable {
     public Endereco() {
     }
 
-    public String getLogradouro() {
-        return (logradouro != null) ? logradouro.getLogradouro() : null;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Logradouro getLogradouro() {
+        return logradouro;
     }
 
     public void setLogradouro(Logradouro logradouro) {
@@ -69,8 +76,8 @@ public class Endereco implements Serializable {
         this.logradouro = logradouro;
     }
 
-    public String getNumero() {
-        return (numero != null) ? numero.getNumero() : null;
+    public Numero getNumero() {
+        return numero;
     }
 
     public void setNumero(Numero numero) {
@@ -79,8 +86,8 @@ public class Endereco implements Serializable {
         this.numero = numero;
     }
 
-    public String getBairro() {
-        return (bairro != null) ? bairro.getBairro() : null;
+    public Bairro getBairro() {
+        return bairro;
     }
 
     public void setBairro(Bairro bairro) {
@@ -89,8 +96,8 @@ public class Endereco implements Serializable {
         this.bairro = bairro;
     }
 
-    public String getCidade() {
-        return (cidade != null) ? cidade.getCidade() : null;
+    public Cidade getCidade() {
+        return cidade;
     }
 
     public void setCidade(Cidade cidade) {
@@ -99,22 +106,14 @@ public class Endereco implements Serializable {
         this.cidade = cidade;
     }
 
-    public UnidadeFederacao getEstado() {
-        return (estado != null) ? estado.getEstado() : null;
+    public Estado getEstado() {
+        return estado;
     }
 
     public void setEstado(Estado estado) {
         if (estado == null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Estado Invalido!!!");
         this.estado = estado;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     @Override

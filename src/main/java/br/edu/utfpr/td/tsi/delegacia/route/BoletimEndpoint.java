@@ -2,10 +2,12 @@ package br.edu.utfpr.td.tsi.delegacia.route;
 
 import jakarta.ws.rs.PathParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import br.edu.utfpr.td.tsi.delegacia.dto.BoletimFurtoVeiculoDTO;
 import br.edu.utfpr.td.tsi.delegacia.entity.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.delegacia.exception.EntidadeInexistenteException;
 import br.edu.utfpr.td.tsi.delegacia.services.boletim.iBoletimServices;
@@ -47,7 +49,13 @@ public class BoletimEndpoint {
             return Response.status(Response.Status.NOT_FOUND)
                     .entity("Paginação invalida")
                     .build();
-        return Response.ok(boletinsList).build();
+                    
+        List<BoletimFurtoVeiculoDTO> boleinsLGPDlist = new ArrayList<BoletimFurtoVeiculoDTO>(boletinsList.size());
+        for (BoletimFurtoVeiculo bo : boletinsList) {
+            boleinsLGPDlist.add(new BoletimFurtoVeiculoDTO(bo));
+        }
+
+        return Response.ok(boleinsLGPDlist).build();
     }
 
     @PathParam("id")
@@ -59,7 +67,8 @@ public class BoletimEndpoint {
     public Response getBoletimByID() {
         try {
             BoletimFurtoVeiculo bo = boletimService.getBoletimById(id);
-            return Response.ok(bo).build();
+            BoletimFurtoVeiculoDTO boLGPD = new BoletimFurtoVeiculoDTO(bo);
+            return Response.ok(boLGPD).build();
         } catch (EntidadeInexistenteException e) {
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
@@ -78,8 +87,8 @@ public class BoletimEndpoint {
             return Response.status(Response.Status.BAD_REQUEST).entity("Valores ausentes no objeto!!!").build();
 
         BoletimFurtoVeiculo boSaved = boletimService.createBoletimId(bo);
-
-        return Response.status(Response.Status.CREATED).entity(boSaved).build();
+        BoletimFurtoVeiculoDTO boLGPD = new BoletimFurtoVeiculoDTO(boSaved);
+        return Response.status(Response.Status.CREATED).entity(boLGPD).build();
     }
 
     @PUT
@@ -97,7 +106,8 @@ public class BoletimEndpoint {
 
         try {
             BoletimFurtoVeiculo boUpdated = boletimService.updateBoletim(bo, id);
-            return Response.status(Response.Status.CREATED).entity(boUpdated).build();
+            BoletimFurtoVeiculoDTO boLGPD = new BoletimFurtoVeiculoDTO(boUpdated);
+            return Response.status(Response.Status.CREATED).entity(boLGPD).build();
         } catch (EntidadeInexistenteException e) {
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }

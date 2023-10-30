@@ -1,7 +1,6 @@
 package br.edu.utfpr.td.tsi.delegacia.entity;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -85,13 +84,8 @@ public class BoletimFurtoVeiculo implements Serializable {
         this.crime = "Furto (art. 155) - VEICULO";
     }
 
-    public String getDataOcorrencia() {
-        if (this.dataOcorrencia != null) {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-            String strDate = formatter.format(this.dataOcorrencia.getData());
-            return strDate;
-        }
-        return null;
+    public DataOcorrencia getDataOcorrencia() {
+        return dataOcorrencia;
     }
 
     public void setDataOcorrencia(DataOcorrencia dataOcorrencia) {
@@ -100,8 +94,8 @@ public class BoletimFurtoVeiculo implements Serializable {
         this.dataOcorrencia = dataOcorrencia;
     }
 
-    public String getPeriodoOcorrencia() {
-        return (this.periodoOcorrencia != null) ? periodoOcorrencia.getPeriodo().toString() : null;
+    public PeriodoOcorrencia  getPeriodoOcorrencia() {
+        return periodoOcorrencia;
     }
 
     public void setPeriodoOcorrencia(PeriodoOcorrencia periodoOcorrencia) {

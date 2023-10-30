@@ -6,7 +6,7 @@ public class Marca {
     private String marca;
 
     
-    public Marca(String marca) throws Exception {
+    public Marca(String marca) {
         String str = StringValidator.validateStringWithSpace(marca, "marca");
         this.marca = str;
     }

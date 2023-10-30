@@ -53,6 +53,14 @@ public class Parte implements Serializable {
     public Parte() {
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return (nome != null) ? nome.getNome() : null;
     }
@@ -63,8 +71,8 @@ public class Parte implements Serializable {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return (email != null) ? email.toString() : null;
+    public EmailParte getEmail() {
+        return email;
     }
 
     public void setEmail(EmailParte email) {
@@ -73,8 +81,8 @@ public class Parte implements Serializable {
         this.email = email;
     }
 
-    public String getTelefone() {
-        return (telefone != null) ? telefone.getTelefone() : null;
+    public TelefoneParte getTelefone() {
+        return telefone;
     }
 
     public void setTelefone(TelefoneParte telefone) {
@@ -83,22 +91,14 @@ public class Parte implements Serializable {
         this.telefone = telefone;
     }
 
-    public String getTipoEnvolvimento() {
-        return (tipoEnvolvimento != null) ? tipoEnvolvimento.getEnvolvimento() : null;
+    public EnvolvimentoParte getTipoEnvolvimento() {
+        return tipoEnvolvimento;
     }
 
     public void setTipoEnvolvimento(EnvolvimentoParte tipoEnvolvimento) {
         if (tipoEnvolvimento == null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "tipoEnvolvimento Invalido!!!");
         this.tipoEnvolvimento = tipoEnvolvimento;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     @Override

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import br.edu.utfpr.td.tsi.delegacia.adapter.endereco.CidadeConverter;
 import br.edu.utfpr.td.tsi.delegacia.adapter.endereco.EstadoConverter;
 import br.edu.utfpr.td.tsi.delegacia.adapter.placa.PlacaConverter;
-import br.edu.utfpr.td.tsi.delegacia.enuns.UnidadeFederacao;
 import br.edu.utfpr.td.tsi.delegacia.values.endereco.Cidade;
 import br.edu.utfpr.td.tsi.delegacia.values.endereco.Estado;
 import br.edu.utfpr.td.tsi.delegacia.values.placa.PlacaVeiculo;
@@ -53,16 +52,24 @@ public class Placa implements Serializable {
     public Placa() {
     }
 
-    public String getPlaca() {
-        return (placa != null) ? placa.getPlaca() : null;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public PlacaVeiculo getPlaca() {
+        return placa;
     }
 
     public void setPlaca(PlacaVeiculo placa) {
         this.placa = placa;
     }
 
-    public UnidadeFederacao getEstado() {
-        return (estado != null) ? estado.getEstado() : null;
+    public Estado getEstado() {
+        return estado;
     }
 
     public void setEstado(Estado uf) {
@@ -71,8 +78,8 @@ public class Placa implements Serializable {
         this.estado = uf;
     }
 
-    public String getCidade() {
-        return (cidade != null) ? cidade.getCidade() : null;
+    public Cidade getCidade() {
+        return cidade;
     }
 
     public void setCidade(Cidade cidade) {
@@ -81,18 +88,9 @@ public class Placa implements Serializable {
         this.cidade = cidade;
     }
 
-    
     @Override
     public String toString() {
         return "{placa: " + placa + ", estado: " + estado + ", cidade: " + cidade + "}";
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
 }

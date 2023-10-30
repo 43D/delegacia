@@ -1,9 +1,11 @@
 package br.edu.utfpr.td.tsi.delegacia.route;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import br.edu.utfpr.td.tsi.delegacia.dto.VeiculoDTO;
 import br.edu.utfpr.td.tsi.delegacia.entity.Veiculo;
 import br.edu.utfpr.td.tsi.delegacia.exception.EntidadeInexistenteException;
 import br.edu.utfpr.td.tsi.delegacia.services.veiculo.iVeiculoServices;
@@ -45,7 +47,13 @@ public class VeiculoEndpoint {
             return Response.status(Response.Status.NOT_FOUND)
                     .entity("Paginação invalida")
                     .build();
-        return Response.ok(veiculosList).build();
+
+        List<VeiculoDTO> veiculosLGPDlist = new ArrayList<VeiculoDTO>(veiculosList.size());
+        for (Veiculo veiculo : veiculosList) {
+            veiculosLGPDlist.add(new VeiculoDTO(veiculo));
+        }
+
+        return Response.ok(veiculosLGPDlist).build();
     }
 
     @PathParam("id")
@@ -57,7 +65,8 @@ public class VeiculoEndpoint {
     public Response getVeiculoByID() {
         try {
             Veiculo veiculo = veiculoServices.getVeiculoById(id);
-            return Response.ok(veiculo).build();
+            VeiculoDTO veiculoLGPD = new VeiculoDTO(veiculo);
+            return Response.ok(veiculoLGPD).build();
         } catch (EntidadeInexistenteException e) {
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }

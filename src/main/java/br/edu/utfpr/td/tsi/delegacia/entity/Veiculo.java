@@ -12,7 +12,6 @@ import br.edu.utfpr.td.tsi.delegacia.adapter.veiculo.AnoConverter;
 import br.edu.utfpr.td.tsi.delegacia.adapter.veiculo.CorConverter;
 import br.edu.utfpr.td.tsi.delegacia.adapter.veiculo.MarcaConverter;
 import br.edu.utfpr.td.tsi.delegacia.adapter.veiculo.TipoVeiculoConverter;
-import br.edu.utfpr.td.tsi.delegacia.enuns.VeiculosEnum;
 import br.edu.utfpr.td.tsi.delegacia.values.Veiculo.AnoFabricado;
 import br.edu.utfpr.td.tsi.delegacia.values.Veiculo.Cor;
 import br.edu.utfpr.td.tsi.delegacia.values.Veiculo.Marca;
@@ -56,8 +55,6 @@ public class Veiculo implements Serializable {
     @PrimaryKeyJoinColumn
     private BoletimFurtoVeiculo envolvidoEm;
 
-    
-
     public Veiculo(Placa emplacamento, AnoFabricado anoFabricacao, Cor cor, Marca marca,
             TipoVeiculo tipoVeiculo) {
         this.emplacamento = emplacamento;
@@ -70,8 +67,16 @@ public class Veiculo implements Serializable {
     public Veiculo() {
     }
 
-    public Integer getAnoFabricacao() {
-        return (anoFabricacao != null) ? anoFabricacao.getAno() : null;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public AnoFabricado getAnoFabricacao() {
+        return anoFabricacao;
     }
 
     public void setAnoFabricacao(AnoFabricado anoFabricacao) {
@@ -80,8 +85,8 @@ public class Veiculo implements Serializable {
         this.anoFabricacao = anoFabricacao;
     }
 
-    public String getCor() {
-        return (cor != null) ? cor.getCor() : null;
+    public Cor getCor() {
+        return cor;
     }
 
     public void setCor(Cor cor) {
@@ -90,8 +95,8 @@ public class Veiculo implements Serializable {
         this.cor = cor;
     }
 
-    public String getMarca() {
-        return (marca != null) ? marca.getMarca() : null;
+    public Marca getMarca() {
+        return marca;
     }
 
     public void setMarca(Marca marca) {
@@ -100,8 +105,8 @@ public class Veiculo implements Serializable {
         this.marca = marca;
     }
 
-    public VeiculosEnum getTipoVeiculo() {
-        return (tipoVeiculo != null) ? tipoVeiculo.getVeiculo() : null;
+    public TipoVeiculo getTipoVeiculo() {
+        return tipoVeiculo;
     }
 
     public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
@@ -126,14 +131,6 @@ public class Veiculo implements Serializable {
 
     public void setEnvolvidoEm(BoletimFurtoVeiculo envolvidoEm) {
         this.envolvidoEm = envolvidoEm;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     @Override
