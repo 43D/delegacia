@@ -57,14 +57,12 @@ public class BoletimEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     public Response getBoletimByID() {
-        BoletimFurtoVeiculo bo = boletimService.getBoletimById(id);
-
-        if (bo == null)
-            return Response.status(Response.Status.NOT_FOUND)
-                    .entity("Boletim não encontrado")
-                    .build();
-
-        return Response.ok(bo).build();
+        try {
+            BoletimFurtoVeiculo bo = boletimService.getBoletimById(id);
+            return Response.ok(bo).build();
+        } catch (EntidadeInexistenteException e) {
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        }
     }
 
     @POST

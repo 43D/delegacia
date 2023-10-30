@@ -23,48 +23,43 @@ public class BoletimVeiculoFurtoServices implements iBoletimServices {
     @Override
     public List<BoletimFurtoVeiculo> getBoletimPage(int page, String cidade, String periodo) {
         List<BoletimFurtoVeiculo> lista = null;
+        Pageable pageable = PageRequest.of(page - 1, 50);
 
         if (!cidade.isEmpty() && !periodo.isEmpty())
-            lista = getBoletimPagePorCidadePeriodo(page, cidade, periodo);
+            lista = getBoletimPagePorCidadePeriodo(pageable, cidade, periodo);
 
         else if (!cidade.isEmpty())
-            lista = getBoletimPagePorCidade(page, cidade);
+            lista = getBoletimPagePorCidade(pageable, cidade);
 
         else if (!periodo.isEmpty())
-            lista = getBoletimPagePorPeriodo(page, periodo);
+            lista = getBoletimPagePorPeriodo(pageable, periodo);
 
         else
-            lista = getBoletimPage(page);
+            lista = getBoletimPage(pageable);
 
         return lista;
 
     }
 
-    private List<BoletimFurtoVeiculo> getBoletimPage(int page) {
-        Pageable pageable = PageRequest.of(page - 1, 50);
+    private List<BoletimFurtoVeiculo> getBoletimPage(Pageable pageable) {
         Page<BoletimFurtoVeiculo> boletins = repository.findAll(pageable);
         List<BoletimFurtoVeiculo> boletinsList = boletins.getContent();
         return boletinsList;
     }
 
-    private List<BoletimFurtoVeiculo> getBoletimPagePorCidade(int page, String cidade) {
-        Pageable pageable = PageRequest.of(page - 1, 50);
+    private List<BoletimFurtoVeiculo> getBoletimPagePorCidade(Pageable pageable, String cidade) {
         Cidade cidadeObj = new Cidade(cidade);
         Page<BoletimFurtoVeiculo> lista = repository.findByLocalOcorrenciaCidade(cidadeObj, pageable);
-
         return lista.getContent();
     }
 
-    private List<BoletimFurtoVeiculo> getBoletimPagePorPeriodo(int page, String periodo) {
-        Pageable pageable = PageRequest.of(page - 1, 50);
+    private List<BoletimFurtoVeiculo> getBoletimPagePorPeriodo(Pageable pageable, String periodo) {
         PeriodoOcorrencia periodoObj = new PeriodoOcorrencia(periodo);
         Page<BoletimFurtoVeiculo> lista = repository.findByPeriodoOcorrencia(periodoObj, pageable);
-
         return lista.getContent();
     }
 
-    private List<BoletimFurtoVeiculo> getBoletimPagePorCidadePeriodo(int page, String cidade, String periodo) {
-        Pageable pageable = PageRequest.of(page - 1, 50);
+    private List<BoletimFurtoVeiculo> getBoletimPagePorCidadePeriodo(Pageable pageable, String cidade, String periodo) {
         PeriodoOcorrencia periodoObj = new PeriodoOcorrencia(periodo);
         Cidade cidadeObj = new Cidade(cidade);
         Page<BoletimFurtoVeiculo> lista = repository.findByPeriodoOcorrenciaAndLocalOcorrenciaCidade(periodoObj,
@@ -78,7 +73,7 @@ public class BoletimVeiculoFurtoServices implements iBoletimServices {
         Optional<BoletimFurtoVeiculo> boletim = repository.findById(id);
         if (boletim.isPresent())
             return boletim.get();
-        return null;
+        throw new EntidadeInexistenteException("Bo não existe!!!");
     }
 
     @Override
