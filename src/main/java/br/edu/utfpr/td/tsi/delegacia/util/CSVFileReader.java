@@ -13,8 +13,10 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
-import java.io.FileReader;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 @Component
 public class CSVFileReader implements iCSVFileReader {
@@ -26,10 +28,11 @@ public class CSVFileReader implements iCSVFileReader {
     public void read() {
         Resource resource = new ClassPathResource("furtos.csv");
         try {
-            FileReader filereader = new FileReader(resource.getFile());
-
+            InputStream is = resource.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+          
             CSVParser csvParser = new CSVParserBuilder().withSeparator('\t').build();
-            CSVReader csvReader = new CSVReaderBuilder(filereader).withCSVParser(csvParser).withSkipLines(1).build();
+            CSVReader csvReader = new CSVReaderBuilder(br).withCSVParser(csvParser).withSkipLines(1).build();
             String[] nextRecord;
 
             int i = 1;
