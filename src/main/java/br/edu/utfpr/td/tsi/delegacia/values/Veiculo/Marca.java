@@ -8,7 +8,7 @@ public class Marca {
     
     public Marca(String marca) {
         marca = marca.replaceAll("/", " ");
-        String str = StringValidator.validateStringWithSpace(marca, "marca");
+        String str = StringValidator.validateString(marca, "marca");
         this.marca = str;
     }
 
