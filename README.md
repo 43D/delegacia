@@ -187,7 +187,7 @@ DEL: /delegacia/boletim/{id}
 <hr>
 <br>
 
-### Veiculos
+## Veiculos
 ```
 GET: /delegacia/veiculo
 ```
